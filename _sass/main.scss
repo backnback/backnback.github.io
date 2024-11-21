@@ -11,3 +11,64 @@
 @import 'layout/archives';
 @import 'layout/categories';
 @import 'layout/category-tag';
+
+
+
+
+div.content h1 {
+    font-family: $font-family-heading;
+    font-size: 24px;
+    font-weight: bold;
+    color: blue; 
+    margin-bottom: 32px;
+  }
+
+
+
+  div.content h2 {
+    font-family: $font-family-heading;
+    font-size: 20px;
+    font-weight: bold;
+    color: black; 
+    margin-top: 60px;
+    margin-bottom: 5px;
+    background-color: rgba(0, 255, 255, 0.49);
+    padding: 5px 0;
+  }
+
+
+  div.content h3 {
+    font-family: $font-family-heading;
+    font-size: 14px;
+    font-weight: bold;
+    color: black; 
+  }
+
+
+  div.content ul {
+    font-size: 12px;
+  }
+
+  
+  div.content ul li {
+    margin-top: 12px !important;
+  }
+
+  div.content code {
+    font-size: 12px;
+    color: rgb(223, 0, 0);
+  }
+
+
+
+  div.content pre {
+    font-size: 12px;
+    color: black;
+  }
+
+
+
+  div.content span.err {
+    color: black !important;
+    background: none !important;
+  }
