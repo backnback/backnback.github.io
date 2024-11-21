@@ -42,6 +42,7 @@ div.content h1 {
     font-size: 14px;
     font-weight: bold;
     color: black; 
+    margin-top: 20px;
   }
 
 
@@ -53,6 +54,12 @@ div.content h1 {
   div.content ul li {
     margin-top: 12px !important;
   }
+
+
+  div.content ol {
+    font-size: 12px;
+  }
+
 
   div.content code {
     font-size: 12px;
