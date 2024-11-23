@@ -32,7 +32,7 @@ div.content h2 {
 
 div.content h3 {
   font-family: $font-family-heading;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: black; 
   margin-top: 20px;
@@ -42,17 +42,17 @@ div.content h3 {
 
 
 div.content ul {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 
 div.content ul li {
-  margin-top: 12px !important;
+  margin-top: 13px !important;
 }
 
 
 div.content ol {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 
@@ -77,11 +77,16 @@ div.content pre {
 
 
 div.content div.language-bash.highlighter-rouge {
-  background-color: rgb(255, 219, 255);
+  background-color: rgb(252, 253, 221);
 }
 
 div.content table.rouge-table {
-  background-color: rgb(255, 219, 255);
+  background-color: rgb(252, 253, 221);
+  font-weight: bold;
+}
+
+div.content div.highlight {
+  background-color: rgb(252, 253, 221);
   font-weight: bold;
 }
 
@@ -89,4 +94,18 @@ div.content table.rouge-table {
 div.content span.err {
   color: black !important;
   background: none !important;
+}
+
+div.content span.i2 {
+  color: red;
+}
+
+div.content span.i1 {
+  color: blue;
+}
+
+
+
+.clear {
+  clear: both;
 }
