@@ -17,7 +17,7 @@ timezone: Asia/Seoul
 
 title: 리버 # the main title
 
-tagline: 코딩 f... # it will display as the sub-title
+tagline: Full-stack 개발자 준비중... # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   3 단계씩 밟아가는 중
@@ -97,11 +97,11 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: assets/img/profile.png
+avatar: assets/img/profile.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
-social_preview_image: assets/img/profile.png # string, local or CORS resources
+social_preview_image: assets/img/profile.jpg # string, local or CORS resources
 
 # boolean type, the global switch for TOC in posts.
 toc: true

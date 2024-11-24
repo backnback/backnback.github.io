@@ -109,3 +109,28 @@ div.content span.i1 {
 .clear {
   clear: both;
 }
+
+
+
+/* Sidebar 스타일 */
+#sidebar {
+  background: url('/assets/img/background.jpeg') no-repeat center center; /* 배경 이미지 */
+  background-size: cover; /* 배경 크기 */
+  z-index: 99; /* 우선순위 설정 */
+}
+
+
+
+ul.nav span {
+  color: white !important;
+}
+
+
+h1.site-title a {
+  color: white !important;
+}
+
+
+p.site-subtitle {
+  color: white !important;
+}
