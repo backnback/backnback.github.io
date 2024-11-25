@@ -94,7 +94,13 @@ pin: true
     river@BOOK-VKBCE9E5R0 MINGW64 ~/git/bitcamp-final/app/build/libs (backnback)
     $ java -jar bitcamp-final.jar
     ```
-    
+    - 만약 .env 파일이 존재하는 경우
+        - `~/git/bitcamp-final/app/build/libs`에서 JAR 파일을 실행시킨다면  
+        .env 파일을 현재 위치에서 찾아서 오류가 발생한다.
+        - .env 파일이 존재하는 Root 디렉토리에서 JAR 파일을 실행시킨다.
+            - **`java -jar ./app/build/libs/bitcamp-final.jar`**
+
+
 <br>
 - 단, JAR 파일로 실행 시 정적 파일을 올바르게 로드할 수 있도록 
     
