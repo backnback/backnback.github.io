@@ -29,6 +29,13 @@ media_subpath: /assets/img/posts/jenkins-howtouse/
     - 서버 생성
 
 
+* student 일반 사용자 추가 / 비밀번호 설정 / 권한 설정
+* $ sudo yum update
+* Docker Engine 받기
+
+
+
+
 <br>
 <br>
 
@@ -282,19 +289,17 @@ media_subpath: /assets/img/posts/jenkins-howtouse/
             - `backtoback/bitcamp:jenkins` 이미지로 `docker-jenkins` 컨테이너 생성
     
     ```bash
-    [student@bitcamp-svr-final jenkins]$ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home -p 8081:8080 -p 50000:50000 --restart=on-failure --network="jenkins" --name docker-jenkins backtoback/bitcamp:jenkins
+    [student@bitcamp-svr-final jenkins]$ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 --restart=on-failure --network="jenkins" --name docker-jenkins backtoback/bitcamp:jenkins
     [sudo] password for student:
     7665e5d7a3263b4b24d8b4343a6e720400f4cf6b6e70b64a018fc9cb1ba15b11
     
     [student@bitcamp-svr-final jenkins]$ sudo docker container ls
-    CONTAINER ID   IMAGE                        COMMAND                  CREATED          STATUS          PORTS                                              NAMES
-    7665e5d7a326   backtoback/bitcamp:jenkins   "/usr/bin/tini -- /u…"   13 seconds ago   Up 12 seconds   0.0.0.0:50000->50000/tcp, 0.0.0.0:8081->8080/tcp   docker-jenkins
-    e51e35b65c89   bitcamp-final-front:first    "docker-entrypoint.s…"   19 hours ago     Up 19 hours     0.0.0.0:3000->3000/tcp                             bitcamp-final-front
-    506a7a2a9ecb   bitcamp-final:first          "/bin/bash"              7 days ago       Up 17 hours     0.0.0.0:8080->8080/tcp                             bitcamp-final
+    CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                              NAMES
+a39e02fc8c88   backtoback/bitcamp:jenkins   "/usr/bin/tini -- /u…"   5 seconds ago   Up 4 seconds   0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp   docker-jenkins
+
     
     ```
     
-    - **`8080`으로 하는 것이 맞으나 현재 `8080` 포트를 사용 중이여서 `8081`로 설정했다.**
 
 <br>
 
