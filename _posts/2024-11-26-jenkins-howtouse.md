@@ -761,7 +761,7 @@ a39e02fc8c88   backtoback/bitcamp:jenkins   "/usr/bin/tini -- /u…"   5 seconds
     <br>
     
     - **<span class="i1">Add webook</span> 클릭**
-        - **Payload URL    &nbsp; :   &nbsp;    `http://젠킨스서버주소:8081/github-webhook/`**
+        - **Payload URL    &nbsp; :   &nbsp;    `http://젠킨스서버주소:8080/github-webhook/`**
         - **Content type**    &nbsp; :   &nbsp;   <span class="i3">**`application/json`**</span>
         
         ![](image 27.png){: width="300" height="150" .left }  
@@ -1029,11 +1029,12 @@ a39e02fc8c88   backtoback/bitcamp:jenkins   "/usr/bin/tini -- /u…"   5 seconds
 
 
 
-<br>
 
 <br>
-
 <br>
+<br>
+
+
 
 ## (5) 스프링부트 애플리케이션 컨테이너 실행하기
 
