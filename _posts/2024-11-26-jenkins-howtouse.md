@@ -19,7 +19,7 @@ media_subpath: /assets/img/posts/jenkins-howtouse/
 - console  &nbsp; ⇒ &nbsp;   server   &nbsp; ⇒ &nbsp;   생성 (기존 콘솔 화면)   &nbsp; ⇒  &nbsp;  CentOS-7.8-64,  High CPU
     - bitcamp-vpc,    bitcamp-vpc-web-subnet 10.0.1.0/24
     - High CPU(vCPU 2개, 4GB, 50GB, g2),  시간 요금제
-    - 서버 이름 &nbsp; : &nbsp; bitcamp-svr-final2
+    - 서버 이름 &nbsp; : &nbsp; bitcamp-svr-final-jenkins
     - network interface의 ip 입력  &nbsp; : &nbsp;  10.0.1.53   &nbsp;  ⇒ &nbsp;   새로운 공인 IP 할당
     - 물리 배치 그룹 미사용 / 반납 보호 해제
     - 인증키 이용
