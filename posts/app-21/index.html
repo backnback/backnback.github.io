@@ -1,0 +1,363 @@
+<!doctype html><html lang="ko-KR" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="App 21. Stack과 Queue" /><meta property="og:locale" content="ko_KR" /><meta name="description" content="수업 때 같이 해왔던 myapp을 혼자 해보는 글" /><meta property="og:description" content="수업 때 같이 해왔던 myapp을 혼자 해보는 글" /><link rel="canonical" href="https://backnback.github.io/posts/app-21/" /><meta property="og:url" content="https://backnback.github.io/posts/app-21/" /><meta property="og:site_name" content="리버" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2024-12-30T22:00:00+09:00" /><meta property="og:image" content="https://backnback.github.io/assets/img/profile.jpg" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://backnback.github.io/assets/img/profile.jpg" /><meta property="twitter:title" content="App 21. Stack과 Queue" /><meta name="google-site-verification" content="googlea7baca2291ff3812.html" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-01T18:23:48+09:00","datePublished":"2024-12-30T22:00:00+09:00","description":"수업 때 같이 해왔던 myapp을 혼자 해보는 글","headline":"App 21. Stack과 Queue","mainEntityOfPage":{"@type":"WebPage","@id":"https://backnback.github.io/posts/app-21/"},"url":"https://backnback.github.io/posts/app-21/"}</script><title>App 21. Stack과 Queue | 리버</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="리버"><meta name="application-name" content="리버"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/ko.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script async src="/assets/js/data/mathjax.js"></script> <script async src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script> <script> let pv = document.getElementById('pageviews'); if (pv !== null) { const uri = location.pathname.replace(/\/$/, ''); const url = `https://blogcounterbacknback.goatcounter.com/counter/${encodeURIComponent(uri)}.json`; fetch(url) .then((response) => response.json()) .then((data) => { const count = data.count.replace(/\s/g, ''); pv.innerText = new Intl.NumberFormat().format(count); }) .catch((error) => { pv.innerText = '1'; }); } </script> <script defer src="/app.min.js?baseurl=&register=true" ></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-9ZSXFFWEB4"></script> <script> document.addEventListener('DOMContentLoaded', () => { window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-9ZSXFFWEB4'); }); </script> <script async src="https://gc.zgo.at/count.js" data-goatcounter="https://blogcounterbacknback.goatcounter.com/count" ></script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="/assets/img/profile.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">리버</a><p class="site-subtitle fst-italic mb-0">Backend 개발자</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>홈</span> </a><li class="nav-item"> <a href="/posts/" class="nav-link"> <i class="fa-fw fas fa-feather-alt"></i> <span>게시글</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>카테고리</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>태그</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>아카이브</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle"></i> <span>정보</span> </a></ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/backnback" aria-label="github" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github"></i> </a> <a href="https://twitter.com/" aria-label="twitter" target="_blank" rel="noopener noreferrer" > <i class="fa-brands fa-x-twitter"></i> </a> <a href="javascript:location.href = 'mailto:' + ['garam8796','naver.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></aside><div id="main-wrapper" class="d-flex justify-content-center"><div class="container d-flex flex-column px-xxl-5"><header id="topbar-wrapper" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100" ><nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">홈</a> </span> <span>App 21. Stack과 Queue</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> 포스트</div><button type="button" id="search-trigger" class="btn btn-link"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..." > </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">취소</button></div></header><div class="row flex-grow-1"><main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>App 21. Stack과 Queue</h1><p class="post-desc fw-light mb-4">수업 때 같이 해왔던 myapp을 혼자 해보는 글</p><div class="post-meta text-muted"> <span> 게시 <time data-ts="1735563600" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom" > 2024/12/30 </time> </span> <span> 업데이트 <time data-ts="1735723428" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom" > 2025/01/01 </time> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/backnback">이가람</a> </em> </span><div> <span> <em id="pageviews"> <i class="fas fa-spinner fa-spin small"></i> </em> 조회 </span> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="1883 단어" > <em>10 분</em>읽는 시간</span></div></div></div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">App 21. Stack과 Queue</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button></div><button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">바로가기</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between"><div class="label text-truncate py-2 ms-4">App 21. Stack과 Queue</div><button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button></div><div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content"><h2 id="app-21--스택과-큐-다루기"><span class="me-2">App 21. 스택과 큐 다루기</span><a href="#app-21--스택과-큐-다루기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><h3 id="1-학습목표"><span class="me-2">1. 학습목표</span><a href="#1-학습목표" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><span class="red">스택</span>과 <span class="red">큐</span>의 구동 원리를 이해하고 구현할 수 있다.<li>스택과 큐를 활용할 수 있다.</ul><p><br /></p><p><br /></p><p><br /></p><h3 id="2-요구사항"><span class="me-2">2. 요구사항</span><a href="#2-요구사항" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>프롬프트에서 메뉴 경로를 <span class="red line">breadcrumb 방식</span>으로 다루기<li>사용자가 입력한 명령어 내역을 다루기</ul><p><br /></p><p><br /></p><p><br /></p><h3 id="3-작업"><span class="me-2">3. 작업</span><a href="#3-작업" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ol><li><span class="red">LinkedList</span>를 <span class="red line">상속</span> 받아 스택을 구현한다.<ul><li><span class="green">Stack 클래스</span> 추가<ul><li><p><code class="language-plaintext highlighter-rouge">push()</code>, <code class="language-plaintext highlighter-rouge">pop()</code>, <code class="language-plaintext highlighter-rouge">isEmpty()</code> 생성</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre>  <span class="kn">package</span> <span class="nn">bitcamp.myapp.util</span><span class="o">;</span>
+            
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stack</span> <span class="kd">extends</span> <span class="nc">LinkedList</span> <span class="o">{</span>
+            
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="o">(</span><span class="nc">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+            
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">pop</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">remove</span><span class="o">(</span><span class="n">size</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+            
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+</pre></table></code></div></div></ul></ul></ol><p><br /></p><p><br /></p><ol><li><span class="red">LinkedList</span>를 <span class="red line">상속</span> 받아 큐를 구현한다.<ul><li><span class="green">Queue 클래스</span> 추가<ul><li><p><code class="language-plaintext highlighter-rouge">offer()</code>, <code class="language-plaintext highlighter-rouge">poll()</code>, <code class="language-plaintext highlighter-rouge">isEmpty()</code> 생성</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>  <span class="kn">package</span> <span class="nn">bitcamp.myapp.util</span><span class="o">;</span>
+            
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Queue</span> <span class="kd">extends</span> <span class="nc">LinkedList</span> <span class="o">{</span>
+            
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">offer</span><span class="o">(</span><span class="nc">Object</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">add</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+            
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">poll</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+            
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+            
+</pre></table></code></div></div></ul></ul></ol><p><br /></p><p><br /></p><ol><li><span class="purple">프롬프트 메뉴 경로</span>를 <span class="purple">출력</span>할 때 스택을 적용한다.<ul><li><span class="pink">App 클래스</span> 변경<ul><li><span class="green">메뉴 경로</span>를 저장하는 스택 객체 준비<li><span class="green">메인 메뉴 이름</span>을 스택에 저장<li><p><span class="purple">서브 메뉴</span>을 실행(<code class="language-plaintext highlighter-rouge">execute()</code>)시킬 때 <strong><code class="language-plaintext highlighter-rouge">menuPath</code></strong>를 넘겨서 저장하게 한다.</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre>  <span class="nc">Stack</span> <span class="n">menuPath</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">();</span>
+            
+    <span class="kt">void</span> <span class="nf">execute</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">menuPath</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="s">"메인"</span><span class="o">);</span>
+      <span class="n">printMenu</span><span class="o">();</span>
+                
+          <span class="o">...</span>
+            
+    <span class="kt">void</span> <span class="nf">processMenu</span><span class="o">(</span><span class="nc">String</span> <span class="n">menuTitle</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">Command</span> <span class="n">command</span> <span class="o">=</span> <span class="n">commandMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">menuTitle</span><span class="o">);</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">command</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%s 메뉴의 명령을 처리할 수 없습니다.\n"</span><span class="o">,</span> <span class="n">menuTitle</span><span class="o">);</span>
+        <span class="k">return</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="n">command</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">menuPath</span><span class="o">);</span>
+    <span class="o">}</span>
+</pre></table></code></div></div></ul></ul><p><br /></p><ul><li><p><span class="pink">Command 클래스</span> 변경</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="kn">package</span> <span class="nn">bitcamp.myapp.command</span><span class="o">;</span>
+        
+  <span class="kn">import</span> <span class="nn">bitcamp.myapp.util.Stack</span><span class="o">;</span>
+        
+  <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Command</span> <span class="o">{</span>
+        
+    <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="nc">Stack</span> <span class="n">menuPath</span><span class="o">);</span>
+  <span class="o">}</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><span class="pink">AbstractCommand 클래스</span> 변경<ul><li><span class="green">서브 메뉴 이름</span>을 <span class="red">스택</span>에 보관 및 꺼내기<li><span class="purple">메뉴 경로를 리턴</span>하는 메서드 추가   (<code class="language-plaintext highlighter-rouge">getMenuPath()</code>)<ul><li><strong><code class="language-plaintext highlighter-rouge">StringBuilder</code></strong> 이용<li>메뉴 경로 사이에 <code class="language-plaintext highlighter-rouge">/</code> 를 입력</ul><li><code class="language-plaintext highlighter-rouge">execute()</code>에서 <code class="language-plaintext highlighter-rouge">String.format</code> 빼기   (<code class="language-plaintext highlighter-rouge">input()</code> 메서드에 들어 있음)</ul><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+</pre><td class="rouge-code"><pre>    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="nc">Stack</span> <span class="n">menuPath</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">menuPath</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">menuTitle</span><span class="o">);</span>
+        
+      <span class="n">printMenus</span><span class="o">();</span>
+        
+      <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">command</span> <span class="o">=</span> <span class="nc">Prompt</span><span class="o">.</span><span class="na">input</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"메인/%s&gt;"</span><span class="o">,</span> <span class="n">menuTitle</span><span class="o">));</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">command</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"menu"</span><span class="o">))</span> <span class="o">{</span>
+          <span class="n">printMenus</span><span class="o">();</span>
+          <span class="k">continue</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">command</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"9"</span><span class="o">))</span> <span class="o">{</span>
+          <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="k">try</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">menuNo</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
+          <span class="nc">String</span> <span class="n">menuName</span> <span class="o">=</span> <span class="n">getMenuTitle</span><span class="o">(</span><span class="n">menuNo</span><span class="o">);</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">menuName</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"올바른 메뉴 번호가 아닙니다."</span><span class="o">);</span>
+            <span class="k">continue</span><span class="o">;</span>
+          <span class="o">}</span>
+        
+          <span class="n">processMenu</span><span class="o">(</span><span class="n">menuName</span><span class="o">);</span>
+        
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">NumberFormatException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"숫자로 메뉴 번호를 입력하세요."</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+          
+          
+    <span class="kd">private</span> <span class="nc">String</span> <span class="nf">getMenuPathTitle</span><span class="o">(</span><span class="nc">Stack</span> <span class="n">menuPath</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">StringBuilder</span> <span class="n">strBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">menuPath</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">strBuilder</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+          <span class="n">strBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"/"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">strBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">menuPath</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+      <span class="o">}</span>
+        
+      <span class="k">return</span> <span class="n">strBuilder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+</pre></table></code></div></div></ul></ol><p><br /></p><p><br /></p><ol><li><span class="purple">사용자가 입력한 내역</span>을 큐&lt;/span&gt;를 이용하여 저장한다.<ul><li><span class="pink">Prompt 클래스</span> 변경<ul><li>사용자가 입력한 내용을 <span class="red">큐</span>에 <span class="red">순서대로 저장</span><ul><li>필드 생성   (<code class="language-plaintext highlighter-rouge">Queue inputQueue</code>)<li><strong><code class="language-plaintext highlighter-rouge">input()</code></strong> 수정<ul><li></ul></ul><li><span class="purple">입력한 내역</span>을 출력   (<code class="language-plaintext highlighter-rouge">printHistory()</code> 생성)</ul><details> <summary><code class="code">Prompt</code></summary><div><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre><td class="rouge-code"><pre>  <span class="kn">package</span> <span class="nn">bitcamp.myapp.util</span><span class="o">;</span>
+        
+  <span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+        
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Prompt</span> <span class="o">{</span>
+        
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+    <span class="kd">static</span> <span class="nc">Queue</span> <span class="n">inputQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Queue</span><span class="o">();</span>
+        
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">input</span><span class="o">(</span><span class="nc">String</span> <span class="n">format</span><span class="o">,</span> <span class="nc">Object</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">String</span> <span class="n">promptTitle</span> <span class="o">=</span> <span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">format</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="n">promptTitle</span><span class="o">);</span>
+        
+      <span class="nc">String</span> <span class="n">input</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">format</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s">"&gt;"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">inputQueue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">promptTitle</span> <span class="o">+</span> <span class="n">input</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">inputQueue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">inputQueue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">input</span><span class="o">;</span>
+    <span class="o">}</span>
+        
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">inputInt</span><span class="o">(</span><span class="nc">String</span> <span class="n">title</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">input</span><span class="o">(</span><span class="n">title</span><span class="o">));</span>
+    <span class="o">}</span>
+        
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+        
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printHistory</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"[명령 내역]----------------------"</span><span class="o">);</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">inputQueue</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">inputQueue</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+      <span class="o">}</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"--------------------------- 끝"</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+        
+</pre></table></code></div></div></div></details></ul></ol><p><br /></p><p><br /></p><ol><li><span class="purple">사용자가 입력한 내역</span>을 출력한다.<ul><li><p><span class="pink">HistoryCommand 클래스</span> 추가</p><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="kn">package</span> <span class="nn">bitcamp.myapp.command</span><span class="o">;</span>
+        
+  <span class="kn">import</span> <span class="nn">bitcamp.myapp.util.Prompt</span><span class="o">;</span>
+  <span class="kn">import</span> <span class="nn">bitcamp.myapp.util.Stack</span><span class="o">;</span>
+        
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">HistoryCommand</span> <span class="kd">implements</span> <span class="nc">Command</span> <span class="o">{</span>
+        
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="nc">Stack</span> <span class="n">menuPath</span><span class="o">)</span> <span class="o">{</span>
+      <span class="nc">Prompt</span><span class="o">.</span><span class="na">printHistory</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+        
+</pre></table></code></div></div></ul><p><br /></p><ul><li><span class="pink">App 클래스</span> 변경<ul><li><span class="purple">“명령내역” 메뉴</span> 추가</ul><details> <summary><code class="code">App</code></summary><div><div class="language-java highlighter-rouge"><div class="code-header"> <span data-label-text="Java"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre>  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
+        
+    <span class="nc">String</span><span class="o">[]</span> <span class="n">mainMenus</span> <span class="o">=</span> <span class="o">{</span><span class="s">"회원"</span><span class="o">,</span> <span class="s">"프로젝트"</span><span class="o">,</span> <span class="s">"게시판"</span><span class="o">,</span> <span class="s">"명령내역"</span><span class="o">,</span> <span class="s">"도움말"</span><span class="o">,</span> <span class="s">"종료"</span><span class="o">};</span>
+        
+    <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Command</span><span class="o">&gt;</span> <span class="n">commandMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+    <span class="nc">Stack</span> <span class="n">menuPath</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stack</span><span class="o">();</span>
+        
+    <span class="kd">public</span> <span class="nf">App</span><span class="o">()</span> <span class="o">{</span>
+      <span class="nc">List</span> <span class="n">userList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+      <span class="nc">List</span> <span class="n">boardList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">();</span>
+      <span class="nc">List</span> <span class="n">projectList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">();</span>
+        
+      <span class="nc">UserCommand</span> <span class="n">userCommand</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserCommand</span><span class="o">(</span><span class="s">"회원"</span><span class="o">,</span> <span class="n">userList</span><span class="o">);</span>
+      <span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"회원"</span><span class="o">,</span> <span class="n">userCommand</span><span class="o">);</span>
+      <span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"게시판"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">BoardCommand</span><span class="o">(</span><span class="s">"게시판"</span><span class="o">,</span> <span class="n">boardList</span><span class="o">));</span>
+      <span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"프로젝트"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ProjectCommand</span><span class="o">(</span><span class="s">"프로젝트"</span><span class="o">,</span> <span class="n">projectList</span><span class="o">,</span> <span class="n">userList</span><span class="o">));</span>
+      <span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"도움말"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">HelpCommand</span><span class="o">(</span><span class="s">"도움말"</span><span class="o">));</span>
+      <span class="n">commandMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"명령내역"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">HistoryCommand</span><span class="o">());</span>
+        
+    <span class="o">}</span>
+</pre></table></code></div></div></div></details></ul></ol><p><br /></p><p><br /></p><ul><li><p><strong>결과</strong></p><p>변경 없음</p></ul><p><br /></p><p><br /></p><p><br /></p><h3 id="-21-자료-구조-----stack과-queue"><span class="me-2">🔆 21. 자료 구조 - Stack과 Queue</span><a href="#-21-자료-구조-----stack과-queue" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><a href="/assets/img/posts/app-20-25/image 6.png" class="popup img-link shimmer"><img src="/assets/img/posts/app-20-25/image 6.png" alt="" loading="lazy"></a></p><ul><li><span class="red bold">Stack</span><ul><li>넣을 때 <strong><code class="language-plaintext highlighter-rouge">push()</code></strong>, 꺼낼 때 <strong><code class="language-plaintext highlighter-rouge">pop()</code></strong><li><span class="pink back">First In Last Out (FILO)</span>   =   <span class="blue">LIFO</span><li>[Ex]<ol><li>방문 페이지 저장<li><span class="back">메서드 호출 (JVM Stack)</span><li>엘리베이터 만차일 때</ol></ul></ul><p><br /></p><p><br /></p><ul><li><span class="blue bold">Queue</span><ul><li>넣을 때 <strong><code class="language-plaintext highlighter-rouge">offer()</code></strong>, 꺼낼 때 <strong><code class="language-plaintext highlighter-rouge">poll()</code></strong><li><span class="pink back">First In First Out (FIFO)</span><li>[Ex]<ol><li>예약 시스템<li><span class="pink">단일 스레드</span>에서 클라이언트 요청 처리<li><span class="blue">이벤트 처리 = Event Queue</span></ol></ul></ul><p><br /></p><p><br /></p><p><br /></p><h3 id="-프롬프트-제목을-스택으로-다루기"><span class="me-2">🔆 프롬프트 제목을 스택으로 다루기</span><a href="#-프롬프트-제목을-스택으로-다루기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><a href="/assets/img/posts/app-20-25/image 7.png" class="popup img-link shimmer"><img src="/assets/img/posts/app-20-25/image 7.png" alt="" loading="lazy"></a></p><ul><li>메뉴 경로를 <span class="blueline">breadcrumb 방식</span>으로 다룬다.</ul><p><br /></p><p><br /></p><ul><li><span class="blueline">breadcrumb 방식</span><ul><li><span class="green">사용자 인터페이스 디자인</span>에서 사용되는 <span class="red back">네비게이션 패턴</span><li>사용자가 현재 웹사이트나 애플리케이션에서 <span class="purple">어느 위치에 있는지 보여주고, 이전에 방문한 페이지로 쉽게 돌아갈 수 있도록 돕는다</span>.<li>이는 웹사이트나 애플리케이션의 구조와 계층을 시각적으로 표시하여 사용자가 자신의 위치를 쉽게 파악하고, 탐색 경로를 제공함으로써 <span class="purple">더 나은 사용자 경험을 제공</span>하는 것을 목표로 합니다.</ul><p><br /></p><ul><li><span class="blue">Breadcrumb</span>의 <span class="red">특징</span><ol><li><span class="pink">위치 표시</span><ul><li><span class="pink">현재 페이지가 사이트의 구조 내에서 어디에 위치하는지</span>를 보여줍니다.<li>예를 들어, <span class="back">“Home &gt; Products &gt; Electronics &gt; Mobile Phones”</span>와 같은 형태</ul><li><span class="pink">탐색 경로 제공</span><ul><li>사용자가 <span class="purple">이전에 방문한 페이지로 쉽게 돌아갈 수 있는 링크 제공</span><li>각 단계는 클릭 가능한 링크로 표시되며, 사용자가 클릭하면 해당 페이지로 이동할 수 있다.</ul><li><span class="pink">일관성 유지</span><ul><li>Breadcrumb 네비게이션은 일관되게 사용되어야 하며, 웹사이트나 애플리케이션의 모든 페이지에 동일한 형식으로 적용되어야 한다.</ul></ol></ul></ul><p><br /></p><p><br /></p><p><br /></p><h3 id="-문자열-연결-"><span class="me-2">🔆 문자열 연결 ⭐</span><a href="#-문자열-연결-" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><a href="/assets/img/posts/app-20-25/image 8.png" class="popup img-link shimmer"><img src="/assets/img/posts/app-20-25/image 8.png" alt="" loading="lazy"></a></p><ul><li><p><span class="blue">문자열을 연결하는 과정</span>에서 <span class="red">새 String 객체</span>가 <span class="red">생성</span>되고 <span class="purple">기존 String 객체</span>가 <span class="purple back">가비지</span>가 된다.</p><p>⇒   즉, <span class="pink line">메모리 낭비</span>가 <span class="pink">심하다</span>.</p><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>  String str <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    
+  str +<span class="o">=</span> <span class="s2">"aaa"</span><span class="p">;</span>
+  <span class="s2">""</span>  +  <span class="s2">"aaa"</span>  <span class="o">=</span>  <span class="s2">"aaa"</span>  <span class="o">=&gt;</span>  새 String 객체 생성
+  <span class="o">(</span>앞의 둘은 가비지가 된다<span class="o">)</span>
+    
+  str +<span class="o">=</span> <span class="s2">"bbb"</span><span class="p">;</span>
+  <span class="s2">"aaa"</span>  +  <span class="s2">"bbb"</span>  <span class="o">=</span>  <span class="s2">"aaabbb"</span>  <span class="o">=&gt;</span>  새 String 객체 생성
+  <span class="o">(</span>앞의 둘은 가비지가 된다<span class="o">)</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><span class="blueline">해결책</span><ul><li>기존의 <strong><code class="language-plaintext highlighter-rouge">String</code></strong>은 <span class="greenback">immutable 객체</span>이기 때문에 <span class="red line">내용 변경 불가!!</span><li><span class="red back">mutable 객체</span>인 <strong><code class="language-plaintext highlighter-rouge">StringBuffer</code></strong>나 <strong><code class="language-plaintext highlighter-rouge">StringBuilder</code></strong>를 <span class="blue">사용</span>하면 된다.</ul></ul><p><br /></p><ul><li><p>요즘 <span class="red">자바 컴파일러</span>는 <span class="blue">문자열 연결 코드</span>를 <strong><code class="language-plaintext highlighter-rouge">StringBuffer</code></strong> 또는 <strong><code class="language-plaintext highlighter-rouge">StringBuilder</code></strong> 코드로 <span class="red line">최적화</span>한다. ★</p><p>⇒   <span class="back">가비지를 생성하지 않는 코드로 변경</span>한다.</p></ul><p><br /></p><p><br /></p><ul><li><span class="pink bold">StringBuffer</span><strong>와</strong> <span class="blue bold">StringBuilder</span><ul><li><span class="pink bold">StringBuffer</span><ul><li><span class="red">Thread-Safe</span>(멀티스레드 동시 접근 차단 기능)을 보유한다.<li>단, <span class="blue">Lock/unLock에 시간이 걸린다</span>.</ul></ul><p><br /></p><ul><li><span class="blue bold">StringBuilder</span><ul><li><span class="red">Thread-Safe 보장 안 함</span>   ⇒   멀티 스레드의 동시 접근 가능<li><span class="back">다른 Thread의 값을 덮어 쓸 수 있다</span>.   ⇒   <span class="purple">Lock/Unlock 관리 안 함</span>   ⇒   <span class="pink">안정성이 떨어진다</span>.<li><span class="blue">시간 소요가 적다</span>.</ul></ul><p><br /></p><ul><li><p>즉, <span class="pink">단일 스레드라면</span> <span class="blue bold">StringBuilder</span>를 <span class="red">쓰는 것이 좋다</span>.</p><p>(<span class="blue">인스턴스 변수</span>로 쓸 때는 <span class="pink bold">Buffer</span>, <span class="green">로컬</span>에서만 쓸 거면 <span class="blue bold">Builder</span>)</p></ul></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/%EA%B0%9C%EC%9D%B8-%EA%B3%B5%EB%B6%80/">개인 공부</a>, <a href="/categories/myapp-%ED%98%BC%EC%9E%90-%EB%8B%A4%EC%8B%9C%ED%95%B4%EB%B3%B4%EA%B8%B0/">myapp 혼자 다시해보기</a>, <a href="/categories/1%EB%8B%A8%EA%B3%84-java%EA%B8%B0%EC%B4%88/">1단계-Java기초</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw me-1"></i> <a href="/tags/stack/" class="post-tag no-text-decoration" >Stack</a> <a href="/tags/queue/" class="post-tag no-text-decoration" >Queue</a> <a href="/tags/breadcrumb-%EB%B0%A9%EC%8B%9D/" class="post-tag no-text-decoration" >breadcrumb 방식</a></div><div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 " ><div class="license-wrapper"> 이 기사는 저작권자의 <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> 라이센스를 따릅니다.</div><div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">공유하기</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=App%2021.%20Stack%EA%B3%BC%20Queue%20-%20%EB%A6%AC%EB%B2%84&url=https%3A%2F%2Fbacknback.github.io%2Fposts%2Fapp-21%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fa-brands fa-square-x-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=App%2021.%20Stack%EA%B3%BC%20Queue%20-%20%EB%A6%AC%EB%B2%84&u=https%3A%2F%2Fbacknback.github.io%2Fposts%2Fapp-21%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fbacknback.github.io%2Fposts%2Fapp-21%2F&text=App%2021.%20Stack%EA%B3%BC%20Queue%20-%20%EB%A6%AC%EB%B2%84" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!" > <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span></div></div></div></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">최근 업데이트</h2><ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2"><li class="text-truncate lh-lg"> <a href="/posts/member-module-1/">Member 모듈 리펙토링 - 개요 및 진행상황</a><li class="text-truncate lh-lg"> <a href="/posts/member-module-2/">Member 모듈 리펙토링 - 1단계</a><li class="text-truncate lh-lg"> <a href="/posts/spring-security2/">Spring Security 탐구 - 동작 원리</a><li class="text-truncate lh-lg"> <a href="/posts/spring-security/">Spring Security 탐구 - 개요</a><li class="text-truncate lh-lg"> <a href="/posts/jwt/">JWT 인증 / 인가</a></ul></section><section><h2 class="panel-heading">인기 태그</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/docker/">Docker</a> <a class="post-tag btn btn-outline-primary" href="/tags/spring-security/">Spring Security</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EB%A9%8B%EC%9F%81%EC%9D%B4-%EC%82%AC%EC%9E%90%EC%B2%98%EB%9F%BC/">멋쟁이 사자처럼</a> <a class="post-tag btn btn-outline-primary" href="/tags/mysql/">MySQL</a> <a class="post-tag btn btn-outline-primary" href="/tags/refactoring/">Refactoring</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EC%9D%B8%EC%A6%9D-%EC%9D%B8%EA%B0%80/">인증/인가</a> <a class="post-tag btn btn-outline-primary" href="/tags/grasp/">GRASP</a> <a class="post-tag btn btn-outline-primary" href="/tags/ncp/">NCP</a> <a class="post-tag btn btn-outline-primary" href="/tags/server/">Server</a> <a class="post-tag btn btn-outline-primary" href="/tags/springconfig/">SpringConfig</a></div></section></div><section id="toc-wrapper" class="ps-0 pe-4"><h2 class="panel-heading ps-3 mb-2">바로가기</h2><nav id="toc"></nav></section></aside></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4"><aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">관련된 글</h3><nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/app-15-16/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1734829200" data-df="YYYY/MM/DD" > 2024/12/22 </time><h4 class="pt-0 my-2">App 15-16. ArrayList와 LinkedList</h4><div class="text-muted"><p>수업 때 같이 해왔던 myapp을 혼자 해보는 글</p></div></div></a></article><article class="col"> <a href="/posts/app-14/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1734656400" data-df="YYYY/MM/DD" > 2024/12/20 </time><h4 class="pt-0 my-2">App 14. 상속의 일반화 기법</h4><div class="text-muted"><p>수업 때 같이 해왔던 myapp을 혼자 해보는 글</p></div></div></a></article><article class="col"> <a href="/posts/app-13/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1734570000" data-df="YYYY/MM/DD" > 2024/12/19 </time><h4 class="pt-0 my-2">App 13. 스테틱과 인스턴스</h4><div class="text-muted"><p>수업 때 같이 해왔던 myapp을 혼자 해보는 글</p></div></div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"> <a href="/posts/app-20/" class="btn btn-outline-primary" aria-label="이전 글" ><p>App 20. SOLID의 DIP</p></a> <a href="/posts/springboot-jpa-basic/" class="btn btn-outline-primary" aria-label="다음 글" ><p>점프 투 스프링부트 2장</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 " ><p>© <time>2025</time> <a href="https://github.com/backnback">이가람</a>. <span data-bs-toggle="tooltip" data-bs-placement="top" title="명시되지 않는 한 이 사이트의 블로그 게시물은 작성자의 Creative Commons Attribution 4.0 International(CC BY 4.0) 라이선스에 따라 사용이 허가되었습니다." >일부 권리 보유</span></p><p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.2.4" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener" >Chirpy</a> theme</p></footer></div></div><div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content"><div id="search-hints"><section><h2 class="panel-heading">인기 태그</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/docker/">Docker</a> <a class="post-tag btn btn-outline-primary" href="/tags/spring-security/">Spring Security</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EB%A9%8B%EC%9F%81%EC%9D%B4-%EC%82%AC%EC%9E%90%EC%B2%98%EB%9F%BC/">멋쟁이 사자처럼</a> <a class="post-tag btn btn-outline-primary" href="/tags/mysql/">MySQL</a> <a class="post-tag btn btn-outline-primary" href="/tags/refactoring/">Refactoring</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EC%9D%B8%EC%A6%9D-%EC%9D%B8%EA%B0%80/">인증/인가</a> <a class="post-tag btn btn-outline-primary" href="/tags/grasp/">GRASP</a> <a class="post-tag btn btn-outline-primary" href="/tags/ncp/">NCP</a> <a class="post-tag btn btn-outline-primary" href="/tags/server/">Server</a> <a class="post-tag btn btn-outline-primary" href="/tags/springconfig/">SpringConfig</a></div></section></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside></div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><aside id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="false" ><div class="toast-header"> <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close" ></button></div><div class="toast-body text-center pt-0"><p class="px-2 mb-3">새 버전의 콘텐츠를 사용할 수 있습니다.</p><button type="button" class="btn btn-primary" aria-label="Update"> 업데이트 </button></div></aside><script> (function () { const origin = 'https://utteranc.es'; const themeMapper = Theme.getThemeMapper('github-light', 'github-dark'); const initTheme = themeMapper[Theme.visualState]; let script = document.createElement('script'); script.src = 'https://utteranc.es/client.js'; script.setAttribute('repo', 'backnback/comments'); script.setAttribute('issue-term', 'pathname'); script.setAttribute('theme', initTheme); script.crossOrigin = 'anonymous'; script.async = true; const $footer = document.querySelector('footer'); $footer.insertAdjacentElement('beforebegin', script); addEventListener('message', (event) => { let newTheme;if (event.source === window && event.data && event.data.id === Theme.ID) { newTheme = themeMapper[Theme.visualState]; const message = { type: 'set-theme', theme: newTheme }; const utterances = document.querySelector('.utterances-frame').contentWindow; utterances.postMessage(message, origin); } }); })(); </script> <script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{snippet}</p></article>', noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script>

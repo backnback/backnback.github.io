@@ -1,0 +1,1127 @@
+<!doctype html><html lang="ko-KR" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="bitcamp-final 프로젝트 배포하기 2" /><meta property="og:locale" content="ko_KR" /><meta name="description" content="최종 프로젝트를 리눅스 서버 생성 후 도커를 사용하여 배포하기" /><meta property="og:description" content="최종 프로젝트를 리눅스 서버 생성 후 도커를 사용하여 배포하기" /><link rel="canonical" href="https://backnback.github.io/posts/final-deploy-2/" /><meta property="og:url" content="https://backnback.github.io/posts/final-deploy-2/" /><meta property="og:site_name" content="리버" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2024-11-20T15:08:00+09:00" /><meta property="og:image" content="https://backnback.github.io/assets/img/profile.jpg" /><meta name="twitter:card" content="summary_large_image" /><meta property="twitter:image" content="https://backnback.github.io/assets/img/profile.jpg" /><meta property="twitter:title" content="bitcamp-final 프로젝트 배포하기 2" /><meta name="google-site-verification" content="googlea7baca2291ff3812.html" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-01-01T18:23:48+09:00","datePublished":"2024-11-20T15:08:00+09:00","description":"최종 프로젝트를 리눅스 서버 생성 후 도커를 사용하여 배포하기","headline":"bitcamp-final 프로젝트 배포하기 2","mainEntityOfPage":{"@type":"WebPage","@id":"https://backnback.github.io/posts/final-deploy-2/"},"url":"https://backnback.github.io/posts/final-deploy-2/"}</script><title>bitcamp-final 프로젝트 배포하기 2 | 리버</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="리버"><meta name="application-name" content="리버"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="/assets/css/jekyll-theme-chirpy.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css"> <script src="/assets/js/dist/theme.min.js"></script> <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/ko.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script async src="/assets/js/data/mathjax.js"></script> <script async src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script> <script> let pv = document.getElementById('pageviews'); if (pv !== null) { const uri = location.pathname.replace(/\/$/, ''); const url = `https://blogcounterbacknback.goatcounter.com/counter/${encodeURIComponent(uri)}.json`; fetch(url) .then((response) => response.json()) .then((data) => { const count = data.count.replace(/\s/g, ''); pv.innerText = new Intl.NumberFormat().format(count); }) .catch((error) => { pv.innerText = '1'; }); } </script> <script defer src="/app.min.js?baseurl=&register=true" ></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-9ZSXFFWEB4"></script> <script> document.addEventListener('DOMContentLoaded', () => { window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-9ZSXFFWEB4'); }); </script> <script async src="https://gc.zgo.at/count.js" data-goatcounter="https://blogcounterbacknback.goatcounter.com/count" ></script><body><aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end"><header class="profile-wrapper"> <a href="/" id="avatar" class="rounded-circle"><img src="/assets/img/profile.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a> <a class="site-title d-block" href="/">리버</a><p class="site-subtitle fst-italic mb-0">Backend 개발자</p></header><nav class="flex-column flex-grow-1 w-100 ps-0"><ul class="nav"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home"></i> <span>홈</span> </a><li class="nav-item"> <a href="/posts/" class="nav-link"> <i class="fa-fw fas fa-feather-alt"></i> <span>게시글</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream"></i> <span>카테고리</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags"></i> <span>태그</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive"></i> <span>아카이브</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle"></i> <span>정보</span> </a></ul></nav><div class="sidebar-bottom d-flex flex-wrap align-items-center w-100"> <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/backnback" aria-label="github" target="_blank" rel="noopener noreferrer" > <i class="fab fa-github"></i> </a> <a href="https://twitter.com/" aria-label="twitter" target="_blank" rel="noopener noreferrer" > <i class="fa-brands fa-x-twitter"></i> </a> <a href="javascript:location.href = 'mailto:' + ['garam8796','naver.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></aside><div id="main-wrapper" class="d-flex justify-content-center"><div class="container d-flex flex-column px-xxl-5"><header id="topbar-wrapper" aria-label="Top Bar"><div id="topbar" class="d-flex align-items-center justify-content-between px-lg-3 h-100" ><nav id="breadcrumb" aria-label="Breadcrumb"> <span> <a href="/">홈</a> </span> <span>bitcamp-final 프로젝트 배포하기 2</span></nav><button type="button" id="sidebar-trigger" class="btn btn-link"> <i class="fas fa-bars fa-fw"></i> </button><div id="topbar-title"> 포스트</div><button type="button" id="search-trigger" class="btn btn-link"> <i class="fas fa-search fa-fw"></i> </button> <search id="search" class="align-items-center ms-3 ms-lg-0"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..." > </search> <button type="button" class="btn btn-link text-decoration-none" id="search-cancel">취소</button></div></header><div class="row flex-grow-1"><main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4"><article class="px-1" data-toc="true"><header><h1 data-toc-skip>bitcamp-final 프로젝트 배포하기 2</h1><p class="post-desc fw-light mb-4">최종 프로젝트를 리눅스 서버 생성 후 도커를 사용하여 배포하기</p><div class="post-meta text-muted"> <span> 게시 <time data-ts="1732082880" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom" > 2024/11/20 </time> </span> <span> 업데이트 <time data-ts="1735723428" data-df="YYYY/MM/DD" data-bs-toggle="tooltip" data-bs-placement="bottom" > 2025/01/01 </time> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/backnback">이가람</a> </em> </span><div> <span> <em id="pageviews"> <i class="fas fa-spinner fa-spin small"></i> </em> 조회 </span> <span class="readtime" data-bs-toggle="tooltip" data-bs-placement="bottom" title="5236 단어" > <em>29 분</em>읽는 시간</span></div></div></div></header><div id="toc-bar" class="d-flex align-items-center justify-content-between invisible"> <span class="label text-truncate">bitcamp-final 프로젝트 배포하기 2</span> <button type="button" class="toc-trigger btn me-1"> <i class="fa-solid fa-list-ul fa-fw"></i> </button></div><button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm"> <span class="label ps-2 pe-1">바로가기</span> <i class="fa-solid fa-angle-right fa-fw"></i> </button> <dialog id="toc-popup" class="p-0"><div class="header d-flex flex-row align-items-center justify-content-between"><div class="label text-truncate py-2 ms-4">bitcamp-final 프로젝트 배포하기 2</div><button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75"> <i class="fas fa-close"></i> </button></div><div id="toc-popup-content" class="px-4 py-3 pb-4"></div></dialog><div class="content"><h2 id="7--docker-엔진-설치"><span class="me-2">(7) Docker 엔진 설치</span><a href="#7--docker-엔진-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><h3 id="설치-준비"><span class="me-2">설치 준비</span><a href="#설치-준비" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong>파일 목록 업데이트</strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo yum update</code></strong></ul><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>yum update
+  <span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>student:
+  Loaded plugins: fastestmirror, langpacks
+    
+  ...
+    
+  Updated:
+    epel-release.noarch 0:7-14
+    
+  Complete!
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>apt get</strong><ul><li>기본적으로 Debian과 Ubuntu 계열의 리눅스 시스템에서 사용하는 패키지 관리 도구<li><code class="language-plaintext highlighter-rouge">apt-get install &lt;패키지명&gt;</code></ul><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">chmod </span>0755 /usr/local/bin/apt-get
+  <span class="nb">chmod</span>: changing permissions of ‘/usr/local/bin/apt-get’: Operation not permitted
+  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>curl https://raw.githubusercontent.com/dvershinin/apt-get-centos/master/apt-get.sh <span class="nt">-o</span> /usr/local/bin/apt-get
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                   Dload  Upload   Total   Spent    Left  Speed
+  100  1256  100  1256    0     0   1852      0 <span class="nt">--</span>:--:-- <span class="nt">--</span>:--:-- <span class="nt">--</span>:--:--  1849
+  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo chmod </span>0755 /usr/local/bin/apt-get
+    
+</pre></table></code></div></div></ul><p><br /></p><ul><li><p><strong>기존에 설치된 Docker 제거</strong></p><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="nb">sudo </span>yum remove docker <span class="se">\</span>
+                    docker-client <span class="se">\</span>
+                    docker-client-latest <span class="se">\</span>
+                    docker-common <span class="se">\</span>
+                    docker-latest <span class="se">\</span>
+                    docker-latest-logrotate <span class="se">\</span>
+                    docker-logrotate <span class="se">\</span>
+                    docker-engine
+</pre></table></code></div></div><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>yum remove docker <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-client <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-client-latest <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-common <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-latest <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-latest-logrotate <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-logrotate <span class="se">\</span>
+  <span class="o">&gt;</span>                   docker-engine
+  <span class="o">[</span><span class="nb">sudo</span><span class="o">]</span> password <span class="k">for </span>student:
+  Loaded plugins: fastestmirror, langpacks
+  No Match <span class="k">for </span>argument: docker
+  No Match <span class="k">for </span>argument: docker-client
+  No Match <span class="k">for </span>argument: docker-client-latest
+  No Match <span class="k">for </span>argument: docker-common
+  No Match <span class="k">for </span>argument: docker-latest
+  No Match <span class="k">for </span>argument: docker-latest-logrotate
+  No Match <span class="k">for </span>argument: docker-logrotate
+  No Match <span class="k">for </span>argument: docker-engine
+  No Packages marked <span class="k">for </span>removal
+    
+</pre></table></code></div></div><ul><li><code class="language-plaintext highlighter-rouge">\</code> 는 옆으로 나열하지 않고 줄바꿈하는 방법</ul></ul><p><br /></p><h3 id="docker의-공식-리포지토리-추가"><span class="me-2">Docker의 공식 리포지토리 추가</span><a href="#docker의-공식-리포지토리-추가" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong>set up the repo</strong> (docker)<ul><li>Docker 설치 파일을 받기 위한 저장소 등록<ul><li>Docker는 소프트웨어 컨테이너를 관리하기 위한 도구<li>CentOS에서 Docker를 설치하려면 Docker의 공식 리포지토리를 시스템에 추가해야 한다.</ul><li><p><code class="language-plaintext highlighter-rouge">yum-utils</code>는 YUM 패키지 관리자의 여러 유용한 도구들을 포함한 패키지로,</p><p>YUM 리포지토리를 관리하는 데 필요한 여러 기능을 제공</p><li>Docker의 공식 리포지토리를 CentOS에 추가</ul><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install</span> <span class="nt">-y</span> yum-utils
+  Loaded plugins: fastestmirror, langpacks
+  Loading mirror speeds from cached hostfile
+   <span class="k">*</span> epel: repo.jing.rocks
+  Package yum-utils-1.1.31-54.el7_8.noarch already installed and latest version
+  Nothing to <span class="k">do</span>
+    
+  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://download.docker.com/linux/centos/docker-ce.repo
+  Loaded plugins: fastestmirror, langpacks
+  adding repo from: https://download.docker.com/linux/centos/docker-ce.repo
+  grabbing file https://download.docker.com/linux/centos/docker-ce.repo to /etc/yum.repos.d/docker-ce.repo
+  repo saved to /etc/yum.repos.d/docker-ce.repo
+</pre></table></code></div></div></ul><p><br /></p><h3 id="docker-engine-설치"><span class="me-2">Docker Engine 설치</span><a href="#docker-engine-설치" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></strong></p><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr1 ~]<span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install </span>docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    
+  Loaded plugins: fastestmirror, langpacks
+  Loading mirror speeds from cached hostfile
+   <span class="k">*</span> epel: repo.jing.rocks
+  ...
+    
+  Complete!
+</pre></table></code></div></div></ul><p><br /></p><h3 id="docker-engine-시작"><span class="me-2">Docker engine 시작</span><a href="#docker-engine-시작" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo systemctl start docker</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">systemctl</span> <span class="nx">start</span> <span class="nx">docker</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>Docker 설치 확인</strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run hello-world</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">run</span> <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>
+  <span class="nx">Unable</span> <span class="nx">to</span> <span class="nx">find</span> <span class="nx">image</span> <span class="dl">'</span><span class="s1">hello-world:latest</span><span class="dl">'</span> <span class="nx">locally</span>
+  <span class="nx">latest</span><span class="p">:</span> <span class="nx">Pulling</span> <span class="k">from</span> <span class="nx">library</span><span class="o">/</span><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>
+  <span class="nx">c1ec31eb5944</span><span class="p">:</span> <span class="nx">Pull</span> <span class="nx">complete</span>
+  <span class="nx">Digest</span><span class="p">:</span> <span class="nx">sha256</span><span class="p">:</span><span class="nx">d211f485f2dd1dee407a80973c8f129f00d54604d2c90732e8e320e5038a0348</span>
+  <span class="nx">Status</span><span class="p">:</span> <span class="nx">Downloaded</span> <span class="nx">newer</span> <span class="nx">image</span> <span class="k">for</span> <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span><span class="p">:</span><span class="nx">latest</span>
+    
+  <span class="nx">Hello</span> <span class="k">from</span> <span class="nx">Docker</span><span class="o">!</span>
+  <span class="nx">This</span> <span class="nx">message</span> <span class="nx">shows</span> <span class="nx">that</span> <span class="nx">your</span> <span class="nx">installation</span> <span class="nx">appears</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">working</span> <span class="nx">correctly</span><span class="p">.</span>
+    
+  <span class="nx">To</span> <span class="nx">generate</span> <span class="k">this</span> <span class="nx">message</span><span class="p">,</span> <span class="nx">Docker</span> <span class="nx">took</span> <span class="nx">the</span> <span class="nx">following</span> <span class="nx">steps</span><span class="p">:</span>
+   <span class="mi">1</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">Docker</span> <span class="nx">client</span> <span class="nx">contacted</span> <span class="nx">the</span> <span class="nx">Docker</span> <span class="nx">daemon</span><span class="p">.</span>
+   <span class="mi">2</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">Docker</span> <span class="nx">daemon</span> <span class="nx">pulled</span> <span class="nx">the</span> <span class="dl">"</span><span class="s2">hello-world</span><span class="dl">"</span> <span class="nx">image</span> <span class="k">from</span> <span class="nx">the</span> <span class="nx">Docker</span> <span class="nx">Hub</span><span class="p">.</span>
+      <span class="p">(</span><span class="nx">amd64</span><span class="p">)</span>
+   <span class="mi">3</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">Docker</span> <span class="nx">daemon</span> <span class="nx">created</span> <span class="nx">a</span> <span class="k">new</span> <span class="nx">container</span> <span class="k">from</span> <span class="nx">that</span> <span class="nx">image</span> <span class="nx">which</span> <span class="nx">runs</span> <span class="nx">the</span>
+      <span class="nx">executable</span> <span class="nx">that</span> <span class="nx">produces</span> <span class="nx">the</span> <span class="nx">output</span> <span class="nx">you</span> <span class="nx">are</span> <span class="nx">currently</span> <span class="nx">reading</span><span class="p">.</span>
+   <span class="mi">4</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">Docker</span> <span class="nx">daemon</span> <span class="nx">streamed</span> <span class="nx">that</span> <span class="nx">output</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">Docker</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">which</span> <span class="nx">sent</span> <span class="nx">it</span>
+      <span class="nx">to</span> <span class="nx">your</span> <span class="nx">terminal</span><span class="p">.</span>
+    
+  <span class="nx">To</span> <span class="k">try</span> <span class="nx">something</span> <span class="nx">more</span> <span class="nx">ambitious</span><span class="p">,</span> <span class="nx">you</span> <span class="nx">can</span> <span class="nx">run</span> <span class="nx">an</span> <span class="nx">Ubuntu</span> <span class="nx">container</span> <span class="kd">with</span><span class="p">:</span>
+   <span class="nx">$</span> <span class="nx">docker</span> <span class="nx">run</span> <span class="o">-</span><span class="nx">it</span> <span class="nx">ubuntu</span> <span class="nx">bash</span>
+    
+  <span class="nx">Share</span> <span class="nx">images</span><span class="p">,</span> <span class="nx">automate</span> <span class="nx">workflows</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">more</span> <span class="kd">with</span> <span class="nx">a</span> <span class="nx">free</span> <span class="nx">Docker</span> <span class="nx">ID</span><span class="p">:</span>
+   <span class="nx">https</span><span class="p">:</span><span class="c1">//hub.docker.com/</span>
+    
+  <span class="nx">For</span> <span class="nx">more</span> <span class="nx">examples</span> <span class="nx">and</span> <span class="nx">ideas</span><span class="p">,</span> <span class="nx">visit</span><span class="p">:</span>
+   <span class="nx">https</span><span class="p">:</span><span class="c1">//docs.docker.com/get-started/</span>
+</pre></table></code></div></div></ul><p><br /> <br /></p><h2 id="8--docker-컨테이너-생성-및-실행"><span class="me-2">(8) Docker 컨테이너 생성 및 실행</span><a href="#8--docker-컨테이너-생성-및-실행" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><h3 id="도커-컨테이너-생성-및-실행"><span class="me-2">도커 컨테이너 생성 및 실행</span><a href="#도커-컨테이너-생성-및-실행" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong>우분투 14.04 컨테이너 생성</strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run -i -t ubuntu:14.04</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">run</span> <span class="o">-</span><span class="nx">i</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>
+  <span class="nx">Unable</span> <span class="nx">to</span> <span class="nx">find</span> <span class="nx">image</span> <span class="dl">'</span><span class="s1">ubuntu:14.04</span><span class="dl">'</span> <span class="nx">locally</span>
+  <span class="mf">14.04</span><span class="p">:</span> <span class="nx">Pulling</span> <span class="k">from</span> <span class="nx">library</span><span class="o">/</span><span class="nx">ubuntu</span>
+  <span class="mi">2</span><span class="nx">e6e20c8e2e6</span><span class="p">:</span> <span class="nx">Pull</span> <span class="nx">complete</span>
+  <span class="mi">0551</span><span class="nx">a797c01d</span><span class="p">:</span> <span class="nx">Pull</span> <span class="nx">complete</span>
+  <span class="mi">512123</span><span class="nx">a864da</span><span class="p">:</span> <span class="nx">Pull</span> <span class="nx">complete</span>
+  <span class="nx">Digest</span><span class="p">:</span> <span class="nx">sha256</span><span class="p">:</span><span class="mi">64483</span><span class="nx">f3496c1373bfd55348e88694d1c4d0c9b660dee6bfef5e12f43b9933b30</span>
+  <span class="nx">Status</span><span class="p">:</span> <span class="nx">Downloaded</span> <span class="nx">newer</span> <span class="nx">image</span> <span class="k">for</span> <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">afe8ed187221</span><span class="p">:</span><span class="o">/</span><span class="err">#</span>
+    
+</pre></table></code></div></div><ul><li><p>컨테이너에 접속한 상태이다. (<code class="language-plaintext highlighter-rouge">root@afe8ed187221:/#</code>)</p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">afe8ed187221</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">whoami</span>
+  <span class="nx">root</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">afe8ed187221</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">hostname</span>
+  <span class="nx">afe8ed187221</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">afe8ed187221</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">ls</span>
+  <span class="nx">bin</span>   <span class="nx">dev</span>  <span class="nx">home</span>  <span class="nx">lib64</span>  <span class="nx">mnt</span>  <span class="nx">proc</span>  <span class="nx">run</span>   <span class="nx">srv</span>  <span class="nx">tmp</span>  <span class="kd">var</span>
+  <span class="nx">boot</span>  <span class="nx">etc</span>  <span class="nx">lib</span>   <span class="nx">media</span>  <span class="nx">opt</span>  <span class="nx">root</span>  <span class="nx">sbin</span>  <span class="nx">sys</span>  <span class="nx">usr</span>
+        
+</pre></table></code></div></div></ul></ul><p><br /></p><ul><li><p><strong>컨테이너 나가기</strong> (<strong><code class="language-plaintext highlighter-rouge"># exit</code></strong>, or <strong>ctrl + D</strong>)</p><p>⇒ 다시 리눅스 서버로 돌아온다.</p><p>⇒ 헷갈리면 안된다. 우리는 현재 리눅스 서버에 접속한 상태에서 컨테이너에 접속한 것이다. ★</p><p>단, 컨테이너를 나갈 때 컨테이너도 종료된다.</p></ul><p><br /></p><h3 id="도커-이미지-목록-확인하기"><span class="me-2">도커 이미지 목록 확인하기</span><a href="#도커-이미지-목록-확인하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker images</code></strong><ul><li>현재 Docker 시스템에 다운로드되어 있는 이미지 목록</ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">images</span>
+  <span class="nx">REPOSITORY</span>    <span class="nx">TAG</span>       <span class="nx">IMAGE</span> <span class="nx">ID</span>       <span class="nx">CREATED</span>         <span class="nx">SIZE</span>
+  <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>   <span class="nx">latest</span>    <span class="nx">d2c94e258dcb</span>   <span class="mi">18</span> <span class="nx">months</span> <span class="nx">ago</span>   <span class="mf">13.3</span><span class="nx">kB</span>
+  <span class="nx">ubuntu</span>        <span class="mf">14.04</span>     <span class="mi">13</span><span class="nx">b66b487594</span>   <span class="mi">3</span> <span class="nx">years</span> <span class="nx">ago</span>     <span class="mi">197</span><span class="nx">MB</span>
+</pre></table></code></div></div></ul><p><br /></p><h3 id="도커-이미지-내려받기---centos7"><span class="me-2">도커 이미지 내려받기 (centos:7)</span><a href="#도커-이미지-내려받기---centos7" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker pull centos:7</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">pull</span> <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>
+  <span class="mi">7</span><span class="p">:</span> <span class="nx">Pulling</span> <span class="k">from</span> <span class="nx">library</span><span class="o">/</span><span class="nx">centos</span>
+  <span class="mi">2</span><span class="nx">d473b07cdd5</span><span class="p">:</span> <span class="nx">Pull</span> <span class="nx">complete</span>
+  <span class="nx">Digest</span><span class="p">:</span> <span class="nx">sha256</span><span class="p">:</span><span class="nx">be65f488b7764ad3638f236b7b515b3678369a5124c47b8d32916d6487418ea4</span>
+  <span class="nx">Status</span><span class="p">:</span> <span class="nx">Downloaded</span> <span class="nx">newer</span> <span class="nx">image</span> <span class="k">for</span> <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>
+  <span class="nx">docker</span><span class="p">.</span><span class="nx">io</span><span class="o">/</span><span class="nx">library</span><span class="o">/</span><span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">images</span>
+  <span class="nx">REPOSITORY</span>    <span class="nx">TAG</span>       <span class="nx">IMAGE</span> <span class="nx">ID</span>       <span class="nx">CREATED</span>         <span class="nx">SIZE</span>
+  <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>   <span class="nx">latest</span>    <span class="nx">d2c94e258dcb</span>   <span class="mi">18</span> <span class="nx">months</span> <span class="nx">ago</span>   <span class="mf">13.3</span><span class="nx">kB</span>
+  <span class="nx">centos</span>        <span class="mi">7</span>         <span class="nx">eeb6ee3f44bd</span>   <span class="mi">3</span> <span class="nx">years</span> <span class="nx">ago</span>     <span class="mi">204</span><span class="nx">MB</span>
+  <span class="nx">ubuntu</span>        <span class="mf">14.04</span>     <span class="mi">13</span><span class="nx">b66b487594</span>   <span class="mi">3</span> <span class="nx">years</span> <span class="nx">ago</span>     <span class="mi">197</span><span class="nx">MB</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><h3 id="도커-이미지로-컨테이너-생성하기"><span class="me-2">도커 이미지로 컨테이너 생성하기</span><a href="#도커-이미지로-컨테이너-생성하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker create -i -t --name mycentos centos:7</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">create</span> <span class="o">-</span><span class="nx">i</span> <span class="o">-</span><span class="nx">t</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">mycentos</span> <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6f7193ba11ea9e8306fe8bf9a159018182aefee82a1c76a323a96</span>
+  <span class="p">(</span><span class="nx">컨테이너의</span> <span class="nx">고유</span> <span class="nx">ID</span><span class="p">)</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><h3 id="도커-컨테이너-목록-보기"><span class="me-2">도커 컨테이너 목록 보기</span><a href="#도커-컨테이너-목록-보기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker ps</code></strong><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker ps -a</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>     <span class="nx">COMMAND</span>   <span class="nx">CREATED</span>   <span class="nx">STATUS</span>    <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                      <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>       <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">45</span> <span class="nx">seconds</span> <span class="nx">ago</span>   <span class="nx">Created</span>                               <span class="nx">mycentos</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">11</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">8</span> <span class="nx">minutes</span> <span class="nx">ago</span>              <span class="nx">laughing_haibt</span>
+  <span class="nx">afe8ed187221</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">19</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">12</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">serene_shtern</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">23</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">23</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">charming_shirley</span>
+</pre></table></code></div></div><ul><li>name을 지정하지 않으면 아무 2개 단어로 만든다.</ul></ul><p><br /></p><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker ps -a</code></strong> : 전체 컨테이너 출력<li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker ps</code></strong> : 현재 실행 중인 것만 나온다.<ul><li>CONTAINER ID : 컨테이너에 자동 할당되는 고유한 ID.<ul><li><code class="language-plaintext highlighter-rouge">$ sudo docker inspect 컨테이너이름 | grep Id</code> : 컨테이너 ID 전체 보기</ul><li>IMAGE : 컨테이너 이미지 이름<li>COMMAND : 컨테이너가 시작될 때 실행될 명령<li>CREATED : 컨테이너가 생성된 후 흐른 시간<li>STATUS : 컨테이너 상태 ( Up(실행중), Exited(종료), Pause(중지) )<li>PORTS : 컨테이너가 개방한 포트와 호스트에 연결한 포트<ul><li>외부에 노출하도록 설정하지 않았다면 출력 내용 없음</ul><li>NAMES : 컨테이너의 고유한 이름<ul><li><code class="language-plaintext highlighter-rouge">--name 옵션</code>으로 설정한 이름. 설정하지 않으면 형용사와 명사를 사용해 무작위 생성<li><code class="language-plaintext highlighter-rouge">$ sudo docker rename 무작위이름 새이름</code></ul></ul></ul><p><br /></p><h3 id="도커-컨테이너-실행하기"><span class="me-2">도커 컨테이너 실행하기</span><a href="#도커-컨테이너-실행하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker start mycentos</code></strong><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker start 해시아이디일부분</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">start</span> <span class="nx">mycentos</span>
+  <span class="nx">mycentos</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                      <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>       <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">5</span> <span class="nx">minutes</span> <span class="nx">ago</span>    <span class="nx">Up</span> <span class="mi">55</span> <span class="nx">seconds</span>                         <span class="nx">mycentos</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">16</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">13</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">laughing_haibt</span>
+  <span class="nx">afe8ed187221</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">23</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">16</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">serene_shtern</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">28</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">28</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">charming_shirley</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>      <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>         <span class="nx">STATUS</span>              <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">5</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nx">Up</span> <span class="nx">About</span> <span class="nx">a</span> <span class="nx">minute</span>             <span class="nx">mycentos</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><h3 id="도커-컨테이너에-접속하기"><span class="me-2">도커 컨테이너에 접속하기</span><a href="#도커-컨테이너에-접속하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker attach mycentos</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">attach</span> <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">root</span><span class="p">@</span><span class="nd">7d357dfeb0f6</span> <span class="sr">/]</span><span class="err">#
+</span>    
+  <span class="p">[</span><span class="nx">root</span><span class="p">@</span><span class="nd">7d357dfeb0f6</span> <span class="sr">/]# exi</span><span class="err">t
+</span>  <span class="nx">exit</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">attach</span> <span class="nx">mycentos</span>
+  <span class="nx">You</span> <span class="nx">cannot</span> <span class="nx">attach</span> <span class="nx">to</span> <span class="nx">a</span> <span class="nx">stopped</span> <span class="nx">container</span><span class="p">,</span> <span class="nx">start</span> <span class="nx">it</span> <span class="nx">first</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">start</span> <span class="nx">mycentos</span>
+  <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">attach</span> <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">root</span><span class="p">@</span><span class="nd">7d357dfeb0f6</span> <span class="sr">/]</span><span class="err">#
+</span>    
+  <span class="p">[</span><span class="nx">root</span><span class="p">@</span><span class="nd">7d357dfeb0f6</span> <span class="sr">/]# read escape sequence   </span><span class="se">(</span><span class="sr">ctrl + p, ctrl + q</span><span class="err">)
+</span>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">attach</span> <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">root</span><span class="p">@</span><span class="nd">7d357dfeb0f6</span> <span class="sr">/]</span><span class="err">#
+</span></pre></table></code></div></div><ul><li><p><strong>exit</strong>로 나가면 컨테이너를 종료한다.</p><p>⇒ <strong>ctrl + P</strong> ⇒ <strong>ctrl + Q</strong> 로 단순히 컨테이너 쉘만 빠져나간다. <strong>(실행 유지)</strong> ★</p></ul></ul><p><br /></p><h3 id="한방에-모든-과정을-끝내는-법"><span class="me-2">한방에 모든 과정을 끝내는 법</span><a href="#한방에-모든-과정을-끝내는-법" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">docker run -i -t</code></strong> ★<ul><li>이미지 없으면 <strong><code class="language-plaintext highlighter-rouge">docker pull</code></strong><li><strong><code class="language-plaintext highlighter-rouge">docker create -i -t</code></strong><li><strong><code class="language-plaintext highlighter-rouge">docker start</code></strong><li><strong><code class="language-plaintext highlighter-rouge">docker attach</code></strong> : -i -t 옵션을 사용했을 때</ul><li><strong><code class="language-plaintext highlighter-rouge">docker create</code></strong><ul><li>이미지 없으면 <strong><code class="language-plaintext highlighter-rouge">docker pull</code></strong></ul></ul><p><br /></p><h3 id="도커-컨테이너-rename"><span class="me-2">도커 컨테이너 rename</span><a href="#도커-컨테이너-rename" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker rename 무작위이름 새이름</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">rename</span> <span class="nx">charming_shirley</span> <span class="nx">hello</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                          <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>       <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">30</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nx">Up</span> <span class="mi">22</span> <span class="nx">minutes</span>                             <span class="nx">mycentos</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">41</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">38</span> <span class="nx">minutes</span> <span class="nx">ago</span>                 <span class="nx">laughing_haibt</span>
+  <span class="nx">afe8ed187221</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">49</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">42</span> <span class="nx">minutes</span> <span class="nx">ago</span>                 <span class="nx">serene_shtern</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">54</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="nx">About</span> <span class="nx">a</span> <span class="nx">minute</span> <span class="nx">ago</span>             <span class="nx">hello</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><h3 id="도커-컨테이너-삭제하기"><span class="me-2">도커 컨테이너 삭제하기</span><a href="#도커-컨테이너-삭제하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker rm 컨테이너이름</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">rm</span> <span class="nx">serene_shtern</span>
+  <span class="nx">serene_shtern</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                      <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>       <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">31</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nx">Up</span> <span class="mi">23</span> <span class="nx">minutes</span>                         <span class="nx">mycentos</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">42</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">39</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">laughing_haibt</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">54</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">2</span> <span class="nx">minutes</span> <span class="nx">ago</span>              <span class="nx">hello</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>실행 중인 것</strong>은 <strong>멈추고 삭제</strong>해야 한다.<ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker stop 컨테이너이름</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">stop</span> <span class="nx">mycentos</span>
+  <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                       <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">d357dfeb0f6</span>   <span class="nx">centos</span><span class="p">:</span><span class="mi">7</span>       <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">32</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">137</span><span class="p">)</span> <span class="mi">2</span> <span class="nx">seconds</span> <span class="nx">ago</span>             <span class="nx">mycentos</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">43</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">40</span> <span class="nx">minutes</span> <span class="nx">ago</span>              <span class="nx">laughing_haibt</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">55</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">3</span> <span class="nx">minutes</span> <span class="nx">ago</span>               <span class="nx">hello</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">rm</span> <span class="nx">mycentos</span>
+  <span class="nx">mycentos</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                      <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">43</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">40</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">laughing_haibt</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">55</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">3</span> <span class="nx">minutes</span> <span class="nx">ago</span>              <span class="nx">hello</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><ul><li>실행 중인 것도 <strong>강제 삭제</strong>하기<ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker rm -f 컨테이너명</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">rm</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mycentos2</span>
+  <span class="nx">mycentos2</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>                      <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="nx">f1079aa5ffc1</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">45</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="mi">42</span> <span class="nx">minutes</span> <span class="nx">ago</span>             <span class="nx">laughing_haibt</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f</span>   <span class="nx">hello</span><span class="o">-</span><span class="nx">world</span>    <span class="dl">"</span><span class="s2">/hello</span><span class="dl">"</span>      <span class="mi">57</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nc">Exited </span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="mi">5</span> <span class="nx">minutes</span> <span class="nx">ago</span>              <span class="nx">hello</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>정지된 모든 컨테이너 삭제</strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker container prune</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">container</span> <span class="nx">prune</span>
+  <span class="nx">WARNING</span><span class="o">!</span> <span class="nx">This</span> <span class="nx">will</span> <span class="nx">remove</span> <span class="nx">all</span> <span class="nx">stopped</span> <span class="nx">containers</span><span class="p">.</span>
+  <span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">to</span> <span class="k">continue</span><span class="p">?</span> <span class="p">[</span><span class="nx">y</span><span class="o">/</span><span class="nx">N</span><span class="p">]</span> <span class="nx">y</span>
+  <span class="nx">Deleted</span> <span class="nx">Containers</span><span class="p">:</span>
+  <span class="nx">f1079aa5ffc19014f4da63d1d1df4677bece49f3e6b6650d05f3fb6fbad0d0fd</span>
+  <span class="mi">49</span><span class="nx">cc738cd62f5a140a2244eb2fc2666bdaf4e0e7f820bd40106e644fd6748077</span>
+    
+  <span class="nx">Total</span> <span class="nx">reclaimed</span> <span class="nx">space</span><span class="p">:</span> <span class="mi">24</span><span class="nx">B</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>     <span class="nx">COMMAND</span>   <span class="nx">CREATED</span>   <span class="nx">STATUS</span>    <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+    
+</pre></table></code></div></div></ul><p><br /> <br /></p><h2 id="8-1--외부에서-컨테이너-접속하기"><span class="me-2">(8-1) 외부에서 컨테이너 접속하기</span><a href="#8-1--외부에서-컨테이너-접속하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><ul><li>현재는 도커가 설치된 호스트만 접속 가능한데 외부에서도 접속할 수 있게 설정</ul><p><br /></p><h3 id="ubuntu-컨테이너를-만들고-시작"><span class="me-2">ubuntu 컨테이너를 만들고 시작</span><a href="#ubuntu-컨테이너를-만들고-시작" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run -i -t --name network_test ubuntu:14.04</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">run</span> <span class="o">-</span><span class="nx">i</span> <span class="o">-</span><span class="nx">t</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">network_test</span> <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">ifconfig</span>
+  <span class="nx">eth0</span>      <span class="nx">Link</span> <span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span>  <span class="nx">HWaddr</span> <span class="mi">02</span><span class="p">:</span><span class="mi">42</span><span class="p">:</span><span class="nx">ac</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">02</span>
+            <span class="nx">inet</span> <span class="nx">addr</span><span class="p">:</span><span class="mf">172.17</span><span class="p">.</span><span class="mf">0.2</span>  <span class="nx">Bcast</span><span class="p">:</span><span class="mf">172.17</span><span class="p">.</span><span class="mf">255.255</span>  <span class="nx">Mask</span><span class="p">:</span><span class="mf">255.255</span><span class="p">.</span><span class="mf">0.0</span>
+            <span class="nx">UP</span> <span class="nx">BROADCAST</span> <span class="nx">RUNNING</span> <span class="nx">MULTICAST</span>  <span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span>  <span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+            <span class="nx">RX</span> <span class="nx">packets</span><span class="p">:</span><span class="mi">0</span> <span class="nx">errors</span><span class="p">:</span><span class="mi">0</span> <span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span> <span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span> <span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+            <span class="nx">TX</span> <span class="nx">packets</span><span class="p">:</span><span class="mi">1</span> <span class="nx">errors</span><span class="p">:</span><span class="mi">0</span> <span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span> <span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span> <span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+            <span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span> <span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">0</span>
+            <span class="nx">RX</span> <span class="nx">bytes</span><span class="p">:</span><span class="mi">0</span> <span class="p">(</span><span class="mf">0.0</span> <span class="nx">B</span><span class="p">)</span>  <span class="nx">TX</span> <span class="nx">bytes</span><span class="p">:</span><span class="mi">42</span> <span class="p">(</span><span class="mf">42.0</span> <span class="nx">B</span><span class="p">)</span>
+    
+  <span class="nx">lo</span>        <span class="nx">Link</span> <span class="nx">encap</span><span class="p">:</span><span class="nx">Local</span> <span class="nx">Loopback</span>
+            <span class="nx">inet</span> <span class="nx">addr</span><span class="p">:</span><span class="mf">127.0</span><span class="p">.</span><span class="mf">0.1</span>  <span class="nx">Mask</span><span class="p">:</span><span class="mf">255.0</span><span class="p">.</span><span class="mf">0.0</span>
+            <span class="nx">inet6</span> <span class="nx">addr</span><span class="p">:</span> <span class="p">::</span><span class="mi">1</span><span class="o">/</span><span class="mi">128</span> <span class="nx">Scope</span><span class="p">:</span><span class="nx">Host</span>
+            <span class="nx">UP</span> <span class="nx">LOOPBACK</span> <span class="nx">RUNNING</span>  <span class="nx">MTU</span><span class="p">:</span><span class="mi">65536</span>  <span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+            <span class="nx">RX</span> <span class="nx">packets</span><span class="p">:</span><span class="mi">1</span> <span class="nx">errors</span><span class="p">:</span><span class="mi">0</span> <span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span> <span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span> <span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+            <span class="nx">TX</span> <span class="nx">packets</span><span class="p">:</span><span class="mi">1</span> <span class="nx">errors</span><span class="p">:</span><span class="mi">0</span> <span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span> <span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span> <span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+            <span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span> <span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">1000</span>
+            <span class="nx">RX</span> <span class="nx">bytes</span><span class="p">:</span><span class="mi">28</span> <span class="p">(</span><span class="mf">28.0</span> <span class="nx">B</span><span class="p">)</span>  <span class="nx">TX</span> <span class="nx">bytes</span><span class="p">:</span><span class="mi">28</span> <span class="p">(</span><span class="mf">28.0</span> <span class="nx">B</span><span class="p">)</span>
+    
+</pre></table></code></div></div><ul><li><strong><code class="language-plaintext highlighter-rouge"># ifconfig</code></strong> : 현재 이 컨테이너의 IP address 나온다.</ul></ul><p><br /></p><h3 id="컨테이너에-아파치-설치하기"><span class="me-2">컨테이너에 아파치 설치하기</span><a href="#컨테이너에-아파치-설치하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge"># apt install apache2</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">apt</span> <span class="nx">install</span> <span class="nx">apache2</span>
+  <span class="nx">Reading</span> <span class="kr">package</span> <span class="nx">lists</span><span class="p">...</span> <span class="nx">Done</span>
+  <span class="nx">Building</span> <span class="nx">dependency</span> <span class="nx">tree</span>
+  <span class="nx">Reading</span> <span class="nx">state</span> <span class="nx">information</span><span class="p">...</span> <span class="nx">Done</span>
+  <span class="nx">The</span> <span class="nx">following</span> <span class="nx">extra</span> <span class="nx">packages</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">installed</span><span class="p">:</span>
+  <span class="p">.....</span>
+    
+</pre></table></code></div></div></ul><p><br /></p><h3 id="아파치-실행"><span class="me-2">아파치 실행</span><a href="#아파치-실행" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge"># service apache2 start</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">service</span> <span class="nx">apache2</span> <span class="nx">status</span>
+   <span class="o">*</span> <span class="nx">apache2</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">running</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">service</span> <span class="nx">apache2</span> <span class="nx">start</span>
+   <span class="o">*</span> <span class="nx">Starting</span> <span class="nx">web</span> <span class="nx">server</span> <span class="nx">apache2</span>          
+</pre></table></code></div></div><p><br /></p><li><p><strong>테스트</strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">apt</span> <span class="nx">install</span> <span class="nx">curl</span>
+  <span class="nx">Reading</span> <span class="kr">package</span> <span class="nx">lists</span><span class="p">...</span> <span class="nx">Done</span>
+  <span class="nx">Building</span> <span class="nx">dependency</span> <span class="nx">tree</span>
+  <span class="nx">Reading</span> <span class="nx">state</span> <span class="nx">information</span><span class="p">...</span> <span class="nx">Done</span>
+  <span class="nx">The</span> <span class="nx">following</span> <span class="nx">extra</span> <span class="nx">packages</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">installed</span><span class="p">:</span>
+    <span class="nx">libcurl3</span>
+  <span class="nx">The</span> <span class="nx">following</span> <span class="nx">NEW</span> <span class="nx">packages</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">installed</span><span class="p">:</span>
+    <span class="nx">curl</span> <span class="nx">libcurl3</span>
+  <span class="mi">0</span> <span class="nx">upgraded</span><span class="p">,</span> <span class="mi">2</span> <span class="nx">newly</span> <span class="nx">installed</span><span class="p">,</span> <span class="mi">0</span> <span class="nx">to</span> <span class="nx">remove</span> <span class="nx">and</span> <span class="mi">0</span> <span class="nx">not</span> <span class="nx">upgraded</span><span class="p">.</span>
+  <span class="nx">Need</span> <span class="nx">to</span> <span class="kd">get</span> <span class="mi">295</span> <span class="nx">kB</span> <span class="k">of</span> <span class="nx">archives</span><span class="p">.</span>
+  <span class="nx">After</span> <span class="k">this</span> <span class="nx">operation</span><span class="p">,</span> <span class="mi">871</span> <span class="nx">kB</span> <span class="k">of</span> <span class="nx">additional</span> <span class="nx">disk</span> <span class="nx">space</span> <span class="nx">will</span> <span class="nx">be</span> <span class="nx">used</span><span class="p">.</span>
+  <span class="nx">Do</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">to</span> <span class="k">continue</span><span class="p">?</span> <span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="p">]</span> <span class="nx">y</span>
+  <span class="p">...</span> <span class="p">...</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="sr">/# curl http:/</span><span class="o">/</span><span class="nx">www</span><span class="p">.</span><span class="nx">naver</span><span class="p">.</span><span class="nx">com</span>
+  <span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;&lt;</span><span class="nt">title</span><span class="p">&gt;</span>302 Found<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">center</span><span class="p">&gt;&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>302 Found<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;&lt;/</span><span class="nt">center</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;&lt;</span><span class="nt">center</span><span class="p">&gt;</span> NWS <span class="p">&lt;/</span><span class="nt">center</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></table></code></div></div><p><br /></p><ul><li><p><code class="language-plaintext highlighter-rouge">curl</code></p><p>CLI용 HTTP 클라이언트로, HTTP/HTTPS 요청을 보내고 응답을 받을 수 있는 도구</p><ul><li><p><strong><code class="language-plaintext highlighter-rouge"># curl localhost</code></strong> / <strong><code class="language-plaintext highlighter-rouge">$ curl 172.17.0.2</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">4fa012018bab</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">curl</span> <span class="nx">localhost</span>
+            
+  <span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span> <span class="nx">PUBLIC</span> <span class="dl">"</span><span class="s2">-//W3C//DTD XHTML 1.0 Transitional//EN</span><span class="dl">"</span> <span class="dl">"</span><span class="s2">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</span><span class="dl">"</span><span class="o">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns</span><span class="p">=</span><span class="s">"http://www.w3.org/1999/xhtml"</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="err">!--</span>
+      <span class="na">Modified</span> <span class="na">from</span> <span class="na">the</span> <span class="na">Debian</span> <span class="na">original</span> <span class="na">for</span> <span class="na">Ubuntu</span>
+      <span class="na">Last</span> <span class="na">updated</span><span class="err">:</span> <span class="na">2014-03-19</span>
+      <span class="na">See</span><span class="err">:</span> <span class="na">https</span><span class="err">:</span><span class="c1">//launchpad.net/bugs/1288690</span>
+    <span class="err">--</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+      ....
+            
+</pre></table></code></div></div><li><p>리눅스에서 만들었으므로 DOCKER에 당연히 접속 가능</p></ul></ul></ul><p><br /></p><h3 id="외부에서-컨테이너-접속하기"><span class="me-2">외부에서 컨테이너 접속하기</span><a href="#외부에서-컨테이너-접속하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>리눅스 서버 공인 IP (NCP)</p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>          <span class="nx">STATUS</span>          <span class="nx">PORTS</span>     <span class="nx">NAMES</span>
+  <span class="mi">4</span><span class="nx">fa012018bab</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">19</span> <span class="nx">minutes</span> <span class="nx">ago</span>   <span class="nx">Up</span> <span class="mi">19</span> <span class="nx">minutes</span>             <span class="nx">network_test</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">curl</span> <span class="mf">172.17</span><span class="p">.</span><span class="mf">0.2</span>
+    
+</pre></table></code></div></div><ul><li><p>리눅스 서버에서 현재 컨테이너에 접속이 되는데 외부에서는 안 된다.</p><p>⇒ 포트 포워딩이 필요하다.</p></ul></ul><p><br /> <br /></p><h2 id="8-2--포트-포워딩"><span class="me-2">(8-2) 포트 포워딩</span><a href="#8-2--포트-포워딩" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><h3 id="포트-포워딩"><span class="me-2">포트 포워딩</span><a href="#포트-포워딩" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>컨테이너를 만들 때 옵션을 지정해야 한다.<li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run -i -t --name 컨테이너이름 -p 80:80 ubuntu:14.04</code></strong></p><p>⇒ 리눅스 서버에 접속하면 컨테이너에 전달하도록</p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">run</span> <span class="o">-</span><span class="nx">i</span> <span class="o">-</span><span class="nx">t</span> <span class="o">--</span><span class="nx">name</span> <span class="nx">network_test2</span> <span class="o">-</span><span class="nx">p</span> <span class="mi">80</span><span class="p">:</span><span class="mi">80</span> <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>
+  <span class="p">[</span><span class="nx">sudo</span><span class="p">]</span> <span class="nx">password</span> <span class="k">for</span> <span class="nx">student</span><span class="p">:</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">7bb74ebaa03b</span><span class="p">:</span><span class="o">/</span><span class="err">#</span>
+    
+  <span class="err">#</span> <span class="nx">apt</span> <span class="nx">install</span> <span class="nx">apache2</span>
+    
+  <span class="err">#</span> <span class="nx">service</span> <span class="nx">apache2</span> <span class="nx">start</span>
+    
+  <span class="nx">ctrl</span> <span class="nx">P</span><span class="p">,</span> <span class="nx">ctrl</span> <span class="nx">q</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>          <span class="nx">COMMAND</span>       <span class="nx">CREATED</span>              <span class="nx">STATUS</span>              <span class="nx">PORTS</span>                <span class="nx">NAMES</span>
+  <span class="mi">7</span><span class="nx">bb74ebaa03b</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="nx">About</span> <span class="nx">a</span> <span class="nx">minute</span> <span class="nx">ago</span>   <span class="nx">Up</span> <span class="nx">About</span> <span class="nx">a</span> <span class="nx">minute</span>   <span class="mf">0.0</span><span class="p">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">80</span><span class="o">-&gt;</span><span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span>   <span class="nx">network_test2</span>
+  <span class="mi">4</span><span class="nx">fa012018bab</span>   <span class="nx">ubuntu</span><span class="p">:</span><span class="mf">14.04</span>   <span class="dl">"</span><span class="s2">/bin/bash</span><span class="dl">"</span>   <span class="mi">26</span> <span class="nx">minutes</span> <span class="nx">ago</span>       <span class="nx">Up</span> <span class="mi">26</span> <span class="nx">minutes</span>                            <span class="nx">network_test</span>
+</pre></table></code></div></div><p>⇒ <strong>host에 80 포트로 오면 컨테이너의 80번 포트로 전달하라.</strong></p><ul><li>인터렉션(<code class="language-plaintext highlighter-rouge">-i</code> 옵션)을 하지 않으면 시작하자 마자 exited 된다.</ul><li><p>다시 브라우저를 열고 101.79.10.151 열기</p><li>이번엔 8888 포트를 80포트로 연결하기 (위의 과정 반복)<ul><li>브라우저에서 <strong>http://101.79.10.151:8888/</strong><li><code class="language-plaintext highlighter-rouge">$ curl ip.me</code>로 <strong>서버 IP 주소</strong>를 알아낼 수 있다.</ul></ul><p><br /></p><h3 id="indexhtml-직접-수정하기"><span class="me-2"><strong>index.html</strong> <strong>직접 수정</strong>하기</span><a href="#indexhtml-직접-수정하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge"># cd var/www/html</code></strong><li><p><strong><code class="language-plaintext highlighter-rouge"># sudo vi index.html</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">b39f2c13ef55</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">cd</span> <span class="kd">var</span><span class="sr">/www/</span><span class="nx">html</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">b39f2c13ef55</span><span class="p">:</span><span class="o">/</span><span class="kd">var</span><span class="sr">/www/</span><span class="nx">html</span><span class="err">#</span> <span class="nx">sudo</span> <span class="nx">nano</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span>
+  <span class="nx">sudo</span><span class="p">:</span> <span class="nx">nano</span><span class="p">:</span> <span class="nx">command</span> <span class="nx">not</span> <span class="nx">found</span>
+    
+  <span class="p">(</span><span class="nx">nano</span> <span class="nx">editor가</span> <span class="nx">없음</span><span class="p">)</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">b39f2c13ef55</span><span class="p">:</span><span class="o">/</span><span class="kd">var</span><span class="sr">/www/</span><span class="nx">html</span><span class="err">#</span> <span class="nx">sudo</span> <span class="nx">vi</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span>
+    
+  <span class="p">(</span><span class="nx">수정</span> <span class="nx">작업</span> <span class="nx">하기</span> <span class="nx">esc</span> <span class="o">+</span> <span class="nx">a</span><span class="p">)</span>
+</pre></table></code></div></div><ul><li>8888 포트로 들어온 사이트를 수정한 것</ul></ul><p><br /></p><h3 id="도커가-바인딩된-포트번호-확인하기"><span class="me-2">도커가 바인딩된 포트번호 확인하기</span><a href="#도커가-바인딩된-포트번호-확인하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker port 컨테이너이름</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">port</span> <span class="nx">network_test</span>
+  <span class="p">(</span><span class="nx">바인딩도니</span> <span class="nx">포트번호가</span> <span class="nx">없으므로</span><span class="p">)</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">port</span> <span class="nx">network_test2</span>
+  <span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span> <span class="o">-&gt;</span> <span class="mf">0.0</span><span class="p">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">80</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">port</span> <span class="nx">network_test3</span>
+  <span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span> <span class="o">-&gt;</span> <span class="mf">0.0</span><span class="p">.</span><span class="mf">0.0</span><span class="p">:</span><span class="mi">8888</span>
+  <span class="p">(</span><span class="nx">컨테이너</span><span class="p">)</span>     <span class="p">(</span><span class="nx">호스트</span><span class="p">)</span>
+</pre></table></code></div></div></ul><p><br /></p><h3 id="다른-방법으로-컨테이너에-접속하기"><span class="me-2">다른 방법으로 컨테이너에 접속하기</span><a href="#다른-방법으로-컨테이너에-접속하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><strong><code class="language-plaintext highlighter-rouge">$ sudo docker exec -i -t 컨테이너명 /bin/bash</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">exec</span> <span class="o">-</span><span class="nx">i</span> <span class="o">-</span><span class="nx">t</span> <span class="nx">mycentos</span> <span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">ea73d30ab8ea</span><span class="p">:</span><span class="o">/</span><span class="err">#</span>
+</pre></table></code></div></div><ul><li><strong><code class="language-plaintext highlighter-rouge">attach</code></strong>와 결과는 동일하다.</ul></ul><p><br /></p><h3 id="detached-모드로-컨테이너의-내부-셸을-사용하기"><span class="me-2">Detached 모드로 컨테이너의 내부 셸을 사용하기</span><a href="#detached-모드로-컨테이너의-내부-셸을-사용하기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker exec 컨테이너명 명령어</code></strong><li><p><strong>접속을 하지 않고 컨테이너에 명령 넣기</strong></p><p><strong>⇒ 컨테이너는 결과를 host os에 리턴한다.</strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">exec</span> <span class="nx">mycentos</span> <span class="nx">ls</span>
+  <span class="nx">bin</span>
+  <span class="nx">boot</span>
+  <span class="nx">dev</span>
+  <span class="nx">etc</span>
+  <span class="nx">home</span>
+  <span class="nx">lib</span>
+  <span class="nx">lib64</span>
+  <span class="nx">media</span>
+  <span class="nx">mnt</span>
+  <span class="nx">opt</span>
+  <span class="nx">proc</span>
+  <span class="nx">root</span>
+  <span class="nx">run</span>
+  <span class="nx">sbin</span>
+  <span class="nx">srv</span>
+  <span class="nx">sys</span>
+  <span class="nx">tmp</span>
+  <span class="nx">usr</span>
+  <span class="kd">var</span>
+    
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr1</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">exec</span> <span class="nx">mycentos</span> <span class="nx">ls</span> <span class="o">-</span><span class="nx">al</span>
+  <span class="nx">total</span> <span class="mi">4</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="p">.</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="p">..</span>
+  <span class="o">-</span><span class="nx">rwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">0</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="p">.</span><span class="nx">dockerenv</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span> <span class="mi">4096</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">bin</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Apr</span> <span class="mi">10</span>  <span class="mi">2014</span> <span class="nx">boot</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">5</span> <span class="nx">root</span> <span class="nx">root</span>  <span class="mi">360</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="nx">dev</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">66</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="nx">etc</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Apr</span> <span class="mi">10</span>  <span class="mi">2014</span> <span class="nx">home</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>  <span class="mi">12</span> <span class="nx">root</span> <span class="nx">root</span>  <span class="mi">208</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">lib</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">34</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">lib64</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">media</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Apr</span> <span class="mi">10</span>  <span class="mi">2014</span> <span class="nx">mnt</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">opt</span>
+  <span class="nx">dr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span> <span class="mi">141</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">0</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="nx">proc</span>
+  <span class="nx">drwx</span><span class="o">------</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">37</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">root</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">21</span> <span class="nx">Mar</span> <span class="mi">25</span>  <span class="mi">2021</span> <span class="nx">run</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">44</span> <span class="nx">Mar</span> <span class="mi">25</span>  <span class="mi">2021</span> <span class="nx">sbin</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">srv</span>
+  <span class="nx">dr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>  <span class="mi">13</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">0</span> <span class="nx">Nov</span>  <span class="mi">7</span> <span class="mi">05</span><span class="p">:</span><span class="mi">22</span> <span class="nx">sys</span>
+  <span class="nx">drwxrwxrwt</span>   <span class="mi">2</span> <span class="nx">root</span> <span class="nx">root</span>    <span class="mi">6</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">tmp</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">18</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="nx">usr</span>
+  <span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span>   <span class="mi">1</span> <span class="nx">root</span> <span class="nx">root</span>   <span class="mi">17</span> <span class="nx">Dec</span> <span class="mi">17</span>  <span class="mi">2019</span> <span class="kd">var</span>
+    
+</pre></table></code></div></div></ul><p><br /> <br /></p><h2 id="9--bitcamp-final-웹-애플리케이션-컨테이너-생성"><span class="me-2">(9) bitcamp-final 웹 애플리케이션 컨테이너 생성</span><a href="#9--bitcamp-final-웹-애플리케이션-컨테이너-생성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><ul><li><p><strong>쓸모없는 것 제거</strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr</span><span class="o">-</span><span class="nx">final</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">container</span> <span class="nx">prune</span>
+  <span class="nx">WARNING</span><span class="o">!</span> <span class="nx">This</span> <span class="nx">will</span> <span class="nx">remove</span> <span class="nx">all</span> <span class="nx">stopped</span> <span class="nx">containers</span><span class="p">.</span>
+  <span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span> <span class="nx">you</span> <span class="nx">want</span> <span class="nx">to</span> <span class="k">continue</span><span class="p">?</span> <span class="p">[</span><span class="nx">y</span><span class="o">/</span><span class="nx">N</span><span class="p">]</span> <span class="nx">y</span>
+  <span class="nx">Deleted</span> <span class="nx">Containers</span><span class="p">:</span>
+  <span class="nx">cb7242e92e05b1b870af538ed311932dc3c2f0d4455300ae674f1df8d5d013ad</span>
+  <span class="mi">1252</span><span class="nx">c24fd0a43f4829ebbf4ea40de8df96be9234c1d8970f332e7b5274b379aa</span>
+  <span class="mi">14</span><span class="nx">a8c9099f593449cdb93c8682633ce1e76894337fe31ca017581d70c363202a</span>
+  <span class="nx">a4f3d6a4d499d51e636f171e900b34671a16dd2a6dc4912e88688816ef1c7b14</span>
+    
+  <span class="nx">Total</span> <span class="nx">reclaimed</span> <span class="nx">space</span><span class="p">:</span> <span class="mi">69</span><span class="nx">B</span>
+  <span class="p">[</span><span class="nx">student</span><span class="p">@</span><span class="nd">bitcamp</span><span class="o">-</span><span class="nx">svr</span><span class="o">-</span><span class="nx">final</span> <span class="o">~</span><span class="p">]</span><span class="nx">$</span> <span class="nx">sudo</span> <span class="nx">docker</span> <span class="nx">ps</span> <span class="o">-</span><span class="nx">a</span>
+  <span class="nx">CONTAINER</span> <span class="nx">ID</span>   <span class="nx">IMAGE</span>       <span class="nx">COMMAND</span>                  <span class="nx">CREATED</span>             <span class="nx">STATUS</span>             <span class="nx">PORTS</span>                   <span class="nx">NAMES</span>
+</pre></table></code></div></div></ul><p><br /></p><h3 id="ubuntu-최신-버전-이미지로-컨테이너-생성"><span class="me-2">ubuntu 최신 버전 이미지로 컨테이너 생성</span><a href="#ubuntu-최신-버전-이미지로-컨테이너-생성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>**</p><ul><li><strong>Ubuntu 22.04 컨테이너 생성 및 실행</strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run -p 8080:8080 -it --name bitcamp-final ubuntu</code></strong></ul><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="o">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">it</span> <span class="c1">--name bitcamp-final ubuntu</span>
+  <span class="kt">Unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">image</span> <span class="n">'ubuntu</span><span class="o">:</span><span class="n">latest'</span> <span class="n">locally</span>
+  <span class="n">latest</span><span class="o">:</span> <span class="kt">Pulling</span> <span class="n">from</span> <span class="n">library</span><span class="o">/</span><span class="n">ubuntu</span>
+  <span class="n">ff65ddf9395b</span><span class="o">:</span> <span class="kt">Pull</span> <span class="n">complete</span>
+  <span class="kt">Digest</span><span class="o">:</span> <span class="n">sha256</span><span class="o">:</span><span class="mi">99</span><span class="n">c35190e22d294cdace2783ac55effc69d32896daaa265f0bbedbcde4fbe3e5</span>
+  <span class="kt">Status</span><span class="o">:</span> <span class="kt">Downloaded</span> <span class="n">newer</span> <span class="n">image</span> <span class="n">for</span> <span class="n">ubuntu</span><span class="o">:</span><span class="n">latest</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">ps</span> <span class="o">-</span><span class="n">a</span>
+  <span class="kt">CONTAINER</span> <span class="kt">ID</span>   <span class="kt">IMAGE</span>                 <span class="kt">COMMAND</span>       <span class="kt">CREATED</span>      <span class="kt">STATUS</span>         <span class="kt">PORTS</span>                    <span class="kt">NAMES</span>
+  <span class="mi">506</span><span class="n">a7a2a9ecb</span>   <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">:</span><span class="n">first</span>   <span class="s">"/bin/bash"</span>   <span class="mi">2</span> <span class="n">days</span> <span class="n">ago</span>   <span class="kt">Up</span> <span class="mi">2</span> <span class="n">seconds</span>   <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">:</span><span class="mi">8080</span><span class="o">-&gt;</span><span class="mi">8080</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span>
+</pre></table></code></div></div><ul><li><code class="language-plaintext highlighter-rouge">-i -t</code> = <code class="language-plaintext highlighter-rouge">-it</code><li>다시 서버로 나가서 컨테이너 상태 확인</ul></ul><p><br /></p><ul><li>재접속 후 <strong><code class="language-plaintext highlighter-rouge"># apt update</code></strong><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker exec -it bitcamp-final /bin/bash</code></strong><li>컨테이너에서 <code class="language-plaintext highlighter-rouge"># apt update</code></ul><div class="language-bash highlighter-rouge"><div class="code-header"> <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre><td class="rouge-code"><pre>  <span class="o">[</span>student@bitcamp-svr-final ~]<span class="nv">$ </span><span class="nb">sudo </span>docker <span class="nb">exec</span> <span class="nt">-it</span> bitcamp-final /bin/bash
+  root@506a7a2a9ecb:/# apt update
+  Get:1 http://archive.ubuntu.com/ubuntu noble InRelease <span class="o">[</span>256 kB]
+  Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease <span class="o">[</span>126 kB]
+  Get:3 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages <span class="o">[</span>15.3 kB]
+  Get:4 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages <span class="o">[</span>720 kB]
+  Get:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease <span class="o">[</span>126 kB]
+  Get:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease <span class="o">[</span>126 kB]
+  Get:7 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages <span class="o">[</span>537 kB]
+  Get:8 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages <span class="o">[</span>574 kB]
+  Get:9 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages <span class="o">[</span>331 kB]
+  Get:10 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages <span class="o">[</span>117 kB]
+  Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages <span class="o">[</span>1808 kB]
+  Get:12 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages <span class="o">[</span>19.3 MB]
+  Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages <span class="o">[</span>922 kB]
+  Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages <span class="o">[</span>542 kB]
+  Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages <span class="o">[</span>18.4 kB]
+  Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages <span class="o">[</span>792 kB]
+  Get:17 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages <span class="o">[</span>11.8 kB]
+  Fetched 26.3 MB <span class="k">in </span>7s <span class="o">(</span>3805 kB/s<span class="o">)</span>
+  Reading package lists... Done
+  Building dependency tree... Done
+  Reading state information... Done
+  3 packages can be upgraded. Run <span class="s1">'apt list --upgradable'</span> to see them.
+</pre></table></code></div></div></ul><p><br /></p><h3 id="기타-프로그램-추가-및-설정"><span class="me-2">기타 프로그램 추가 및 설정</span><a href="#기타-프로그램-추가-및-설정" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong>ifconfig 등 네트워킹 관련 프로그램 추가</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt update</code></strong><li><strong><code class="language-plaintext highlighter-rouge"># apt install net-tools</code></strong></ul><li><strong>nano 에디터 설치</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt install nano</code></strong></ul><li><strong>JDK 설치</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt install openjdk-21-jdk -y</code></strong></ul><li><p><strong>JAVA_HOME 환경 변수</strong> 설정</p><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+</pre><td class="rouge-code"><pre>  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="n">ls</span> <span class="o">-</span><span class="n">al</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span>
+  <span class="n">total</span> <span class="mi">8</span>
+  <span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">4</span> <span class="n">root</span> <span class="n">root</span>  <span class="mi">126</span> <span class="kt">Nov</span>  <span class="mi">7</span> <span class="mi">16</span><span class="o">:</span><span class="mi">36</span> <span class="o">.</span>
+  <span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">4096</span> <span class="kt">Nov</span>  <span class="mi">7</span> <span class="mi">16</span><span class="o">:</span><span class="mi">36</span> <span class="o">..</span>
+  <span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="c1">--r-- 1 root root 1840 Jul 23 10:34 .java-1.21.0-openjdk-amd64.jinfo</span>
+  <span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span>   <span class="mi">21</span> <span class="kt">Jul</span> <span class="mi">23</span> <span class="mi">10</span><span class="o">:</span><span class="mi">34</span> <span class="n">java</span><span class="o">-</span><span class="mf">1.21</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span> <span class="o">-&gt;</span> <span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+  <span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">9</span> <span class="n">root</span> <span class="n">root</span>  <span class="mi">119</span> <span class="kt">Nov</span>  <span class="mi">7</span> <span class="mi">16</span><span class="o">:</span><span class="mi">36</span> <span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+  <span class="n">drwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">2</span> <span class="n">root</span> <span class="n">root</span>   <span class="mi">21</span> <span class="kt">Nov</span>  <span class="mi">7</span> <span class="mi">16</span><span class="o">:</span><span class="mi">36</span> <span class="n">openjdk</span><span class="o">-</span><span class="mi">21</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="n">echo</span> <span class="n">'export</span> <span class="kt">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64'</span> <span class="o">|</span> <span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bash</span><span class="o">.</span><span class="n">bashrc</span>
+  <span class="n">export</span> <span class="kt">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+    
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bash</span><span class="o">.</span><span class="n">bashrc</span>    <span class="p">(</span><span class="err">확인하는</span> <span class="err">것</span><span class="p">)</span>
+  <span class="o">#</span> <span class="kt">System</span><span class="o">-</span><span class="n">wide</span> <span class="o">.</span><span class="n">bashrc</span> <span class="n">file</span> <span class="n">for</span> <span class="n">interactive</span> <span class="n">bash</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">shells</span><span class="o">.</span>
+    
+  <span class="o">#</span> <span class="kt">To</span> <span class="n">enable</span> <span class="n">the</span> <span class="n">settings</span> <span class="o">/</span> <span class="n">commands</span> <span class="kr">in</span> <span class="n">this</span> <span class="n">file</span> <span class="n">for</span> <span class="n">login</span> <span class="n">shells</span> <span class="n">as</span> <span class="n">well</span><span class="p">,</span>
+  <span class="o">#</span> <span class="n">this</span> <span class="n">file</span> <span class="n">has</span> <span class="n">to</span> <span class="n">be</span> <span class="n">sourced</span> <span class="kr">in</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">profile</span><span class="o">.</span>
+    
+  <span class="o">#</span> <span class="kt">If</span> <span class="n">not</span> <span class="n">running</span> <span class="n">interactively</span><span class="p">,</span> <span class="n">don't</span> <span class="kr">do</span> <span class="n">anything</span>
+  <span class="p">[</span> <span class="o">-</span><span class="n">z</span> <span class="s">"$PS1"</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">return</span>
+    
+  <span class="o">#</span> <span class="n">check</span> <span class="n">the</span> <span class="n">window</span> <span class="n">size</span> <span class="n">after</span> <span class="n">each</span> <span class="n">command</span> <span class="n">and</span><span class="p">,</span> <span class="kr">if</span> <span class="n">necessary</span><span class="p">,</span>
+  <span class="o">#</span> <span class="n">update</span> <span class="n">the</span> <span class="n">values</span> <span class="kr">of</span> <span class="kt">LINES</span> <span class="n">and</span> <span class="kt">COLUMNS</span><span class="o">.</span>
+  <span class="n">shopt</span> <span class="o">-</span><span class="n">s</span> <span class="n">checkwinsize</span>
+    
+  <span class="o">#</span> <span class="n">set</span> <span class="n">variable</span> <span class="n">identifying</span> <span class="n">the</span> <span class="n">chroot</span> <span class="n">you</span> <span class="n">work</span> <span class="kr">in</span> <span class="p">(</span><span class="n">used</span> <span class="kr">in</span> <span class="n">the</span> <span class="n">prompt</span> <span class="n">below</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">z</span> <span class="s">"${debian_chroot:-}"</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">[</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">debian_chroot</span> <span class="p">];</span> <span class="kr">then</span>
+      <span class="n">debian_chroot</span><span class="o">=$</span><span class="p">(</span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">debian_chroot</span><span class="p">)</span>
+  <span class="n">fi</span>
+    
+  <span class="o">#</span> <span class="n">set</span> <span class="n">a</span> <span class="n">fancy</span> <span class="n">prompt</span> <span class="p">(</span><span class="n">non</span><span class="o">-</span><span class="n">color</span><span class="p">,</span> <span class="n">overwrite</span> <span class="n">the</span> <span class="n">one</span> <span class="kr">in</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">profile</span><span class="p">)</span>
+  <span class="o">#</span> <span class="n">but</span> <span class="n">only</span> <span class="kr">if</span> <span class="n">not</span> <span class="kt">SUDOing</span> <span class="n">and</span> <span class="n">have</span> <span class="kt">SUDO_PS1</span> <span class="n">set</span><span class="p">;</span> <span class="kr">then</span> <span class="n">assume</span> <span class="n">smart</span> <span class="n">user</span><span class="o">.</span>
+  <span class="kr">if</span> <span class="o">!</span> <span class="p">[</span> <span class="o">-</span><span class="n">n</span> <span class="s">"${SUDO_USER}"</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">n</span> <span class="s">"${SUDO_PS1}"</span> <span class="p">];</span> <span class="kr">then</span>
+    <span class="kt">PS1</span><span class="o">=</span><span class="n">'</span><span class="o">$</span><span class="p">{</span><span class="n">debian_chroot</span><span class="o">:+</span><span class="p">(</span><span class="o">$</span><span class="n">debian_chroot</span><span class="p">)}</span><span class="nf">\</span><span class="n">u</span><span class="o">@\</span><span class="n">h</span><span class="o">:\</span><span class="n">w</span><span class="o">\$</span> <span class="n">'</span>
+  <span class="n">fi</span>
+    
+  <span class="o">#</span> <span class="kt">Commented</span> <span class="n">out</span><span class="p">,</span> <span class="n">don't</span> <span class="n">overwrite</span> <span class="n">xterm</span> <span class="o">-</span><span class="kt">T</span> <span class="s">"title"</span> <span class="o">-</span><span class="n">n</span> <span class="s">"icontitle"</span> <span class="n">by</span> <span class="kr">default</span><span class="o">.</span>
+  <span class="o">#</span> <span class="kt">If</span> <span class="n">this</span> <span class="n">is</span> <span class="n">an</span> <span class="n">xterm</span> <span class="n">set</span> <span class="n">the</span> <span class="n">title</span> <span class="n">to</span> <span class="n">user</span><span class="o">@</span><span class="n">host</span><span class="o">:</span><span class="n">dir</span>
+  <span class="o">#</span><span class="kr">case</span> <span class="s">"$TERM"</span> <span class="kr">in</span>
+  <span class="o">#</span><span class="n">xterm</span><span class="o">*|</span><span class="n">rxvt</span><span class="o">*</span><span class="p">)</span>
+  <span class="o">#</span>    <span class="kt">PROMPT_COMMAND</span><span class="o">=</span><span class="n">'echo</span> <span class="o">-</span><span class="n">ne</span> <span class="s">"</span><span class="se">\033</span><span class="s">]0;${USER}@${HOSTNAME}: ${PWD}</span><span class="se">\007</span><span class="s">"</span><span class="n">'</span>
+  <span class="o">#</span>    <span class="p">;;</span>
+  <span class="o">#*</span><span class="p">)</span>
+  <span class="o">#</span>    <span class="p">;;</span>
+  <span class="o">#</span><span class="n">esac</span>
+    
+  <span class="o">#</span> <span class="n">enable</span> <span class="n">bash</span> <span class="n">completion</span> <span class="kr">in</span> <span class="n">interactive</span> <span class="n">shells</span>
+  <span class="o">#</span><span class="kr">if</span> <span class="o">!</span> <span class="n">shopt</span> <span class="o">-</span><span class="n">oq</span> <span class="n">posix</span><span class="p">;</span> <span class="kr">then</span>
+  <span class="o">#</span>  <span class="kr">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">bash</span><span class="o">-</span><span class="n">completion</span><span class="o">/</span><span class="n">bash_completion</span> <span class="p">];</span> <span class="kr">then</span>
+  <span class="o">#</span>    <span class="o">.</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">bash</span><span class="o">-</span><span class="n">completion</span><span class="o">/</span><span class="n">bash_completion</span>
+  <span class="o">#</span>  <span class="n">elif</span> <span class="p">[</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bash_completion</span> <span class="p">];</span> <span class="kr">then</span>
+  <span class="o">#</span>    <span class="o">.</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bash_completion</span>
+  <span class="o">#</span>  <span class="n">fi</span>
+  <span class="o">#</span><span class="n">fi</span>
+    
+  <span class="o">#</span> <span class="n">sudo</span> <span class="n">hint</span>
+  <span class="kr">if</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">e</span> <span class="s">"$HOME/.sudo_as_admin_successful"</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">[</span> <span class="o">!</span> <span class="o">-</span><span class="n">e</span> <span class="s">"$HOME/.hushlogin"</span> <span class="p">]</span> <span class="p">;</span> <span class="kr">then</span>
+      <span class="kr">case</span> <span class="s">" $(groups) "</span> <span class="kr">in</span> <span class="o">*\</span> <span class="n">admin</span><span class="nf">\</span> <span class="o">*|*\</span> <span class="n">sudo</span><span class="nf">\</span> <span class="o">*</span><span class="p">)</span>
+      <span class="kr">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sudo</span> <span class="p">];</span> <span class="kr">then</span>
+          <span class="n">cat</span> <span class="o">&lt;&lt;-</span><span class="kt">EOF</span>
+          <span class="kt">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">command</span> <span class="n">as</span> <span class="n">administrator</span> <span class="p">(</span><span class="n">user</span> <span class="s">"root"</span><span class="p">),</span> <span class="n">use</span> <span class="s">"sudo &lt;command&gt;"</span><span class="o">.</span>
+          <span class="kt">See</span> <span class="s">"man sudo_root"</span> <span class="n">for</span> <span class="n">details</span><span class="o">.</span>
+    
+          <span class="kt">EOF</span>
+      <span class="n">fi</span>
+      <span class="n">esac</span>
+  <span class="n">fi</span>
+    
+  <span class="o">#</span> <span class="kr">if</span> <span class="n">the</span> <span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="n">package</span> <span class="n">is</span> <span class="n">installed</span><span class="p">,</span> <span class="n">use</span> <span class="n">it</span>
+  <span class="kr">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="o">-</span><span class="n">o</span> <span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="p">];</span> <span class="kr">then</span>
+          <span class="n">function</span> <span class="n">command_not_found_handle</span> <span class="p">{</span>
+                  <span class="o">#</span> <span class="n">check</span> <span class="n">because</span> <span class="n">c</span><span class="o">-</span><span class="n">n</span><span class="o">-</span><span class="n">f</span> <span class="n">could've</span> <span class="n">been</span> <span class="n">removed</span> <span class="kr">in</span> <span class="n">the</span> <span class="n">meantime</span>
+                  <span class="kr">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="p">];</span> <span class="kr">then</span>
+                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="c1">-- "$1"</span>
+                     <span class="n">return</span> <span class="o">$?</span>
+                  <span class="n">elif</span> <span class="p">[</span> <span class="o">-</span><span class="n">x</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="p">];</span> <span class="kr">then</span>
+                     <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span><span class="o">/</span><span class="n">command</span><span class="o">-</span><span class="n">not</span><span class="o">-</span><span class="n">found</span> <span class="c1">-- "$1"</span>
+                     <span class="n">return</span> <span class="o">$?</span>
+                  <span class="kr">else</span>
+                     <span class="n">printf</span> <span class="s">"%s: command not found</span><span class="se">\n</span><span class="s">"</span> <span class="s">"$1"</span> <span class="o">&gt;&amp;</span><span class="mi">2</span>
+                     <span class="n">return</span> <span class="mi">127</span>
+                  <span class="n">fi</span>
+          <span class="p">}</span>
+  <span class="n">fi</span>
+  <span class="n">export</span> <span class="kt">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+</pre></table></code></div></div><ul><li><p>이렇게 맨 마지막에 들어가는 것을 확인할 수 있다.</p><p><strong><code class="language-plaintext highlighter-rouge">export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64</code></strong></p></ul></ul><p><br /></p><ul><li><p><strong>환경 변수 설정 적용 후 확인</strong></p><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="n">source</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">bash</span><span class="o">.</span><span class="n">bashrc</span>
+    
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:/#</span> <span class="n">echo</span> <span class="o">$</span><span class="kt">JAVA_HOME</span>
+  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mi">21</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>git 설치</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt install git -y</code></strong></ul><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>  <span class="err">#</span> <span class="nx">apt</span> <span class="nx">install</span> <span class="nx">git</span> <span class="o">-</span><span class="nx">y</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">git</span> <span class="o">--</span><span class="nx">version</span>
+  <span class="nx">git</span> <span class="nx">version</span> <span class="mf">2.43</span><span class="p">.</span><span class="mi">0</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><strong>wget 설치</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt install wget -y</code></strong></ul></ul><p><br /></p><ul><li><strong>unzip 설치</strong><ul><li><strong><code class="language-plaintext highlighter-rouge"># apt install unzip -y</code></strong></ul></ul><p><br /></p><h3 id="bitcamp-final-저장소-복제-후-빌드-및-실행"><span class="me-2">bitcamp-final 저장소 복제 후 빌드 및 실행</span><a href="#bitcamp-final-저장소-복제-후-빌드-및-실행" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong>bitcamp-fianl git 저장소</strong> 가져오기<li><p><strong><code class="language-plaintext highlighter-rouge"># git clone …</code></strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre>  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">cd</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">pwd</span>
+  <span class="o">/</span><span class="nx">root</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">mkdir</span> <span class="nx">git</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span> <span class="nx">cd</span> <span class="nx">git</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">/</span><span class="err">#</span><span class="p">:</span><span class="o">~</span><span class="sr">/git# git clone https:/</span><span class="o">/</span><span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">backnback</span><span class="o">/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span>
+  <span class="nx">Cloning</span> <span class="nx">into</span> <span class="dl">'</span><span class="s1">bitcamp-final</span><span class="dl">'</span><span class="p">...</span>
+  <span class="nx">remote</span><span class="p">:</span> <span class="nx">Enumerating</span> <span class="nx">objects</span><span class="p">:</span> <span class="mi">98</span><span class="p">,</span> <span class="nx">done</span><span class="p">.</span>
+  <span class="nx">remote</span><span class="p">:</span> <span class="nx">Counting</span> <span class="nx">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">98</span><span class="o">/</span><span class="mi">98</span><span class="p">),</span> <span class="nx">done</span><span class="p">.</span>
+  <span class="nx">remote</span><span class="p">:</span> <span class="nx">Compressing</span> <span class="nx">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">71</span><span class="o">/</span><span class="mi">71</span><span class="p">),</span> <span class="nx">done</span><span class="p">.</span>
+  <span class="nx">remote</span><span class="p">:</span> <span class="nx">Total</span> <span class="mi">98</span> <span class="p">(</span><span class="nx">delta</span> <span class="mi">15</span><span class="p">),</span> <span class="nx">reused</span> <span class="mi">95</span> <span class="p">(</span><span class="nx">delta</span> <span class="mi">15</span><span class="p">),</span> <span class="nx">pack</span><span class="o">-</span><span class="nx">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="k">from</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="nx">Receiving</span> <span class="nx">objects</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">98</span><span class="o">/</span><span class="mi">98</span><span class="p">),</span> <span class="mf">77.82</span> <span class="nx">KiB</span> <span class="o">|</span> <span class="mf">2.51</span> <span class="nx">MiB</span><span class="o">/</span><span class="nx">s</span><span class="p">,</span> <span class="nx">done</span><span class="p">.</span>
+  <span class="nx">Resolving</span> <span class="nx">deltas</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">15</span><span class="o">/</span><span class="mi">15</span><span class="p">),</span> <span class="nx">done</span><span class="p">.</span>
+</pre></table></code></div></div></ul><p><br /></p><ul><li><p><strong>빌드 후 실행하기</strong></p><div class="language-jsx highlighter-rouge"><div class="code-header"> <span data-label-text="Jsx"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">~</span><span class="sr">/git/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span><span class="err">#</span> <span class="p">.</span><span class="o">/</span><span class="nx">gradlew</span> <span class="nx">build</span>
+  <span class="nx">bash</span><span class="p">:</span> <span class="p">.</span><span class="o">/</span><span class="nx">gradlew</span><span class="p">:</span> <span class="nx">Permission</span> <span class="nx">denied</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">~</span><span class="sr">/git/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span><span class="err">#</span> <span class="nx">chmod</span> <span class="mi">755</span> <span class="p">.</span><span class="o">/</span><span class="nx">gradlew</span>
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">~</span><span class="sr">/git/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span><span class="err">#</span> <span class="p">.</span><span class="o">/</span><span class="nx">gradlew</span> <span class="nx">build</span>
+  <span class="nx">Downloading</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//services.gradle.org/distributions/gradle-8.10.2-bin.zip</span>
+  <span class="p">....</span>
+    
+  <span class="nx">root</span><span class="p">@</span><span class="nd">506a7a2a9ecb</span><span class="p">:</span><span class="o">~</span><span class="sr">/git/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span><span class="err">#</span> <span class="nx">java</span> <span class="o">-</span><span class="nx">jar</span> <span class="p">.</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">build</span><span class="o">/</span><span class="nx">libs</span><span class="o">/</span><span class="nx">bitcamp</span><span class="o">-</span><span class="nx">final</span><span class="p">.</span><span class="nx">jar</span>
+</pre></table></code></div></div><ul><li>실행이 되지 않는다. ⇒ <strong>final.properties</strong> 과 <strong>email.properties</strong> 추가 필요</ul></ul><p><br /></p><ul><li><p><strong>final.properties</strong> 과 <strong>email.properties</strong> 추가 후 재실행</p><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">git</span><span class="o">/</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">#</span> <span class="n">cd</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~#</span> <span class="n">mkdir</span> <span class="n">config</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~#</span> <span class="n">cd</span> <span class="n">config</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">config</span><span class="o">#</span> <span class="n">nano</span> <span class="n">final</span><span class="o">.</span><span class="n">properties</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">config</span><span class="o">#</span> <span class="n">nano</span> <span class="n">email</span><span class="o">.</span><span class="n">properties</span>
+    
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">config</span><span class="o">#</span> <span class="n">cd</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~#</span> <span class="n">cd</span> <span class="n">git</span><span class="o">/</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">git</span><span class="o">/</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">#</span> <span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="o">./</span><span class="n">app</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">libs</span><span class="o">/</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">.</span><span class="n">jar</span>
+    
+</pre></table></code></div></div></ul><p><br /> <br /></p><h2 id="10--컨테이너로-이미지-생성"><span class="me-2">(10) 컨테이너로 이미지 생성</span><a href="#10--컨테이너로-이미지-생성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><hr /><h3 id="컨테이너를-그대로-이미지로-만들기"><span class="me-2">컨테이너를 그대로 이미지로 만들기</span><a href="#컨테이너를-그대로-이미지로-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker commit 옵션 컨테이너명 REPOSITORY:TAG</code></strong><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker commit -a "alicek106" -m "my first commit" commit_test commit_test:first</code></strong><ul><li><code class="language-plaintext highlighter-rouge">-a author</code> : 이미지 작성자에 대한 정보를 이미지에 포함시킨다.<li><code class="language-plaintext highlighter-rouge">-m 커밋메시지</code> : 이미지에 포함될 부가 설명을 설정한다.</ul><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~/</span><span class="n">git</span><span class="o">/</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">#</span> <span class="n">cd</span>
+  <span class="n">root</span><span class="o">@</span><span class="mi">506</span><span class="n">a7a2a9ecb</span><span class="o">:~#</span> <span class="n">exit</span>
+  <span class="n">exit</span>
+    
+  <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">commit</span> <span class="o">-</span><span class="n">a</span> <span class="s">"backnback"</span> <span class="o">-</span><span class="n">m</span> <span class="s">"my first commit"</span> <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span> <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span><span class="o">:</span><span class="n">first</span>
+  <span class="n">sha256</span><span class="o">:</span><span class="mi">73</span><span class="o">....</span>
+    
+  <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">image</span> <span class="n">ls</span>
+  <span class="kt">REPOSITORY</span>              <span class="kt">TAG</span>       <span class="kt">IMAGE</span> <span class="kt">ID</span>       <span class="kt">CREATED</span>          <span class="kt">SIZE</span>
+  <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span>           <span class="n">first</span>     <span class="mi">73</span><span class="o">.....</span>        <span class="mi">15</span> <span class="n">seconds</span> <span class="n">ago</span>   <span class="mi">1</span><span class="o">...</span><span class="kt">GB</span>
+  <span class="n">wordpress</span>               <span class="n">latest</span>    <span class="mi">4</span><span class="n">c9b15c9a8ae</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>      <span class="mi">697</span><span class="kt">MB</span>
+  <span class="n">ubuntu</span>                  <span class="n">latest</span>    <span class="mi">59</span><span class="n">ab366372d5</span>   <span class="mi">3</span> <span class="n">weeks</span> <span class="n">ago</span>      <span class="mf">78.1</span><span class="kt">MB</span>
+  <span class="n">mysql</span>                   <span class="mf">5.7</span>       <span class="mf">5107333e08</span><span class="n">a8</span>   <span class="mi">11</span> <span class="n">months</span> <span class="n">ago</span>    <span class="mi">501</span><span class="kt">MB</span>
+  <span class="n">hello</span><span class="o">-</span><span class="n">world</span>             <span class="n">latest</span>    <span class="n">d2c94e258dcb</span>   <span class="mi">18</span> <span class="n">months</span> <span class="n">ago</span>    <span class="mf">13.3</span><span class="n">kB</span>
+  <span class="n">centos</span>                  <span class="mi">7</span>         <span class="n">eeb6ee3f44bd</span>   <span class="mi">3</span> <span class="n">years</span> <span class="n">ago</span>      <span class="mi">204</span><span class="kt">MB</span>
+  <span class="n">ubuntu</span>                  <span class="mf">14.04</span>     <span class="mi">13</span><span class="n">b66b487594</span>   <span class="mi">3</span> <span class="n">years</span> <span class="n">ago</span>      <span class="mi">197</span><span class="kt">MB</span>
+  <span class="n">alicek106</span><span class="o">/</span><span class="n">volume_test</span>   <span class="n">latest</span>    <span class="mi">342</span><span class="n">a67bc9486</span>   <span class="mi">8</span> <span class="n">years</span> <span class="n">ago</span>      <span class="mi">197</span><span class="kt">MB</span>
+</pre></table></code></div></div></ul><p><br /></p><h3 id="만든-이미지로-컨테이너-만들기"><span class="me-2">만든 이미지로 컨테이너 만들기</span><a href="#만든-이미지로-컨테이너-만들기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><strong><code class="language-plaintext highlighter-rouge">$ sudo docker run -i -t --name commit_test2 commit_test:first</code></strong><ul><li>컨테이너 변경 : <code class="language-plaintext highlighter-rouge"># echo test_second! &gt;&gt; second</code></ul><div class="language-haskell highlighter-rouge"><div class="code-header"> <span data-label-text="Haskell"><i class="fas fa-code fa-fw small"></i></span> <button aria-label="copy" data-title-succeed="복사되었습니다!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>  <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">stop</span> <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span>
+  <span class="n">bitcamp</span><span class="o">-</span><span class="n">final</span>
+    
+  <span class="p">[</span><span class="n">student</span><span class="o">@</span><span class="n">bitcamp</span><span class="o">-</span><span class="n">svr</span><span class="o">-</span><span class="n">final</span> <span class="o">~</span><span class="p">]</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">t</span> <span class="c1">--name bitcamp-fianl2 -p 8081:8080 bitcamp-final:first</span>
+</pre></table></code></div></div><ul><li>ctrl + P ⇒ ctrl + Q 를 하면 종료 안하고 서버로 갈 수 있다.<li>서버를 여러 개 띄울 수 있다.</ul></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw me-1"></i> <a href="/categories/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/">프로젝트</a>, <a href="/categories/cicd/">CICD</a>, <a href="/categories/docker/">Docker</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw me-1"></i> <a href="/tags/docker/" class="post-tag no-text-decoration" >Docker</a> <a href="/tags/ncp/" class="post-tag no-text-decoration" >NCP</a> <a href="/tags/server/" class="post-tag no-text-decoration" >Server</a></div><div class=" post-tail-bottom d-flex justify-content-between align-items-center mt-5 pb-2 " ><div class="license-wrapper"> 이 기사는 저작권자의 <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> 라이센스를 따릅니다.</div><div class="share-wrapper d-flex align-items-center"> <span class="share-label text-muted">공유하기</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=bitcamp-final%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0%202%20-%20%EB%A6%AC%EB%B2%84&url=https%3A%2F%2Fbacknback.github.io%2Fposts%2Ffinal-deploy-2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter"> <i class="fa-fw fa-brands fa-square-x-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=bitcamp-final%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0%202%20-%20%EB%A6%AC%EB%B2%84&u=https%3A%2F%2Fbacknback.github.io%2Fposts%2Ffinal-deploy-2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fbacknback.github.io%2Fposts%2Ffinal-deploy-2%2F&text=bitcamp-final%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0%202%20-%20%EB%A6%AC%EB%B2%84" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <button id="copy-link" aria-label="Copy link" class="btn small" data-bs-toggle="tooltip" data-bs-placement="top" title="링크 복사하기" data-title-succeed="링크가 복사되었습니다!" > <i class="fa-fw fas fa-link pe-none fs-6"></i> </button> </span></div></div></div></article></main><aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted"><div class="access"><section id="access-lastmod"><h2 class="panel-heading">최근 업데이트</h2><ul class="content list-unstyled ps-0 pb-1 ms-1 mt-2"><li class="text-truncate lh-lg"> <a href="/posts/member-module-1/">Member 모듈 리펙토링 - 개요 및 진행상황</a><li class="text-truncate lh-lg"> <a href="/posts/member-module-2/">Member 모듈 리펙토링 - 1단계</a><li class="text-truncate lh-lg"> <a href="/posts/spring-security2/">Spring Security 탐구 - 동작 원리</a><li class="text-truncate lh-lg"> <a href="/posts/spring-security/">Spring Security 탐구 - 개요</a><li class="text-truncate lh-lg"> <a href="/posts/jwt/">JWT 인증 / 인가</a></ul></section><section><h2 class="panel-heading">인기 태그</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/docker/">Docker</a> <a class="post-tag btn btn-outline-primary" href="/tags/spring-security/">Spring Security</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EB%A9%8B%EC%9F%81%EC%9D%B4-%EC%82%AC%EC%9E%90%EC%B2%98%EB%9F%BC/">멋쟁이 사자처럼</a> <a class="post-tag btn btn-outline-primary" href="/tags/mysql/">MySQL</a> <a class="post-tag btn btn-outline-primary" href="/tags/refactoring/">Refactoring</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EC%9D%B8%EC%A6%9D-%EC%9D%B8%EA%B0%80/">인증/인가</a> <a class="post-tag btn btn-outline-primary" href="/tags/grasp/">GRASP</a> <a class="post-tag btn btn-outline-primary" href="/tags/ncp/">NCP</a> <a class="post-tag btn btn-outline-primary" href="/tags/server/">Server</a> <a class="post-tag btn btn-outline-primary" href="/tags/springconfig/">SpringConfig</a></div></section></div><section id="toc-wrapper" class="ps-0 pe-4"><h2 class="panel-heading ps-3 mb-2">바로가기</h2><nav id="toc"></nav></section></aside></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4"><aside id="related-posts" aria-labelledby="related-label"><h3 class="mb-4" id="related-label">관련된 글</h3><nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4"><article class="col"> <a href="/posts/final-deploy-3/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1732529280" data-df="YYYY/MM/DD" > 2024/11/25 </time><h4 class="pt-0 my-2">bitcamp-final 프로젝트 배포하기 3</h4><div class="text-muted"><p>리엑트 배포하기</p></div></div></a></article><article class="col"> <a href="/posts/final-deploy-1/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1732082880" data-df="YYYY/MM/DD" > 2024/11/20 </time><h4 class="pt-0 my-2">bitcamp-final 프로젝트 배포하기 1</h4><div class="text-muted"><p>최종 프로젝트를 리눅스 서버 생성 후 도커를 사용하여 배포하기</p></div></div></a></article><article class="col"> <a href="/posts/jenkins-howtouse2/" class="post-preview card h-100"><div class="card-body"> <time data-ts="1732798800" data-df="YYYY/MM/DD" > 2024/11/28 </time><h4 class="pt-0 my-2">Jenkins 사용법 2 (React / Nginx)</h4><div class="text-muted"><p>Jenkins 사용 방법 (React / Nginx)</p></div></div></a></article></nav></aside><nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation"> <a href="/posts/final-deploy-1/" class="btn btn-outline-primary" aria-label="이전 글" ><p>bitcamp-final 프로젝트 배포하기 1</p></a> <a href="/posts/mysql-install/" class="btn btn-outline-primary" aria-label="다음 글" ><p>MySQL 설치 및 설정</p></a></nav><footer aria-label="Site Info" class=" d-flex flex-column justify-content-center text-muted flex-lg-row justify-content-lg-between align-items-lg-center pb-lg-3 " ><p>© <time>2025</time> <a href="https://github.com/backnback">이가람</a>. <span data-bs-toggle="tooltip" data-bs-placement="top" title="명시되지 않는 한 이 사이트의 블로그 게시물은 작성자의 Creative Commons Attribution 4.0 International(CC BY 4.0) 라이선스에 따라 사용이 허가되었습니다." >일부 권리 보유</span></p><p>Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a data-bs-toggle="tooltip" data-bs-placement="top" title="v7.2.4" href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener" >Chirpy</a> theme</p></footer></div></div><div id="search-result-wrapper" class="d-flex justify-content-center d-none"><div class="col-11 content"><div id="search-hints"><section><h2 class="panel-heading">인기 태그</h2><div class="d-flex flex-wrap mt-3 mb-1 me-3"> <a class="post-tag btn btn-outline-primary" href="/tags/docker/">Docker</a> <a class="post-tag btn btn-outline-primary" href="/tags/spring-security/">Spring Security</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EB%A9%8B%EC%9F%81%EC%9D%B4-%EC%82%AC%EC%9E%90%EC%B2%98%EB%9F%BC/">멋쟁이 사자처럼</a> <a class="post-tag btn btn-outline-primary" href="/tags/mysql/">MySQL</a> <a class="post-tag btn btn-outline-primary" href="/tags/refactoring/">Refactoring</a> <a class="post-tag btn btn-outline-primary" href="/tags/%EC%9D%B8%EC%A6%9D-%EC%9D%B8%EA%B0%80/">인증/인가</a> <a class="post-tag btn btn-outline-primary" href="/tags/grasp/">GRASP</a> <a class="post-tag btn btn-outline-primary" href="/tags/ncp/">NCP</a> <a class="post-tag btn btn-outline-primary" href="/tags/server/">Server</a> <a class="post-tag btn btn-outline-primary" href="/tags/springconfig/">SpringConfig</a></div></section></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><aside aria-label="Scroll to Top"> <button id="back-to-top" type="button" class="btn btn-lg btn-box-shadow"> <i class="fas fa-angle-up"></i> </button></aside></div><div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div><aside id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-animation="true" data-bs-autohide="false" ><div class="toast-header"> <button type="button" class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close" ></button></div><div class="toast-body text-center pt-0"><p class="px-2 mb-3">새 버전의 콘텐츠를 사용할 수 있습니다.</p><button type="button" class="btn btn-primary" aria-label="Update"> 업데이트 </button></div></aside><script> (function () { const origin = 'https://utteranc.es'; const themeMapper = Theme.getThemeMapper('github-light', 'github-dark'); const initTheme = themeMapper[Theme.visualState]; let script = document.createElement('script'); script.src = 'https://utteranc.es/client.js'; script.setAttribute('repo', 'backnback/comments'); script.setAttribute('issue-term', 'pathname'); script.setAttribute('theme', initTheme); script.crossOrigin = 'anonymous'; script.async = true; const $footer = document.querySelector('footer'); $footer.insertAdjacentElement('beforebegin', script); addEventListener('message', (event) => { let newTheme;if (event.source === window && event.data && event.data.id === Theme.ID) { newTheme = themeMapper[Theme.visualState]; const message = { type: 'set-theme', theme: newTheme }; const utterances = document.querySelector('.utterances-frame').contentWindow; utterances.postMessage(message, origin); } }); })(); </script> <script> document.addEventListener('DOMContentLoaded', () => { SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<article class="px-1 px-sm-2 px-lg-4 px-xl-0"><header><h2><a href="{url}">{title}</a></h2><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div></header><p>{snippet}</p></article>', noResultsText: '<p class="mt-5">검색 결과가 없습니다.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="me-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); }); </script>
